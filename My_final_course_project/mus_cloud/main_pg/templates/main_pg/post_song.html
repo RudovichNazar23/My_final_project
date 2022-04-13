@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post music</title>
+</head>
+
+    <style>
+
+         p.form {
+           font-size: 120%;
+           clear: both;
+           text-align: right;
+         }
+
+          label{
+            float:left;
+         }
+
+         div.main {
+
+            float:left;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+
+         }
+
+
+    </style>
+
+<body>
+
+            <a href="main_page">
+                Back
+            </a>
+
+    <div class="main">
+        <form action="{% url 'post_song' %}" method="POST" enctype="multipart/form-data">
+
+            <p class="form">
+                <label>
+                    Name song
+                </label>
+                <input type="text" name="name_song">
+            </p>
+
+            <p class="form">
+                <label>
+                    Song
+                </label>
+                <input type="file" name="song">
+            </p>
+
+            <p class="form">
+                <input type="submit" value="submit">
+            </p>
+
+            {% for message in messages %}
+                {{message}}<br>
+            {% endfor %}
+        </form>
+    </div>
+
+</body>
+</html>

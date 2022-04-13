@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+
+        <style>
+               .button {
+                border: 1px solid #333;
+                display: inline-block;
+                padding: 5px 15px;
+                text-decoration: none;
+                color: #000;}
+
+               .button:hover {
+                    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+                    background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
+                    color: #a00;}
+
+               p.info{
+
+                        height: 100px;
+                        background: white;
+                        outline: 2px solid #000;
+                        border: 350px solid #fff;
+                        border-radius: 10px; }
+        </style>
+
+
+
+<body>
+    <div>
+            <h3>
+
+                Hi , {{user.username}} !
+
+            </h3>
+    </div>
+
+    <div>
+
+        <p>
+
+          <a href="your_profile" class="button">
+
+              Your profile
+
+          </a>
+
+        </p>
+    </div>
+
+
+      <div>
+
+          <p>
+
+              <a href="post_song" class="button">
+
+                  Post song
+
+              </a>
+
+          </p>
+
+
+      </div>
+
+      <p>
+          <a href="find_other_users" class="button">
+
+              Find other users
+
+          </a>
+      </p>
+
+          <div>
+            <p>
+                <a href="post_album" class="button">
+
+                    Post album
+
+                </a>
+            </p>
+        </div>
+
+
+
+        <div>
+              <p>
+
+                <a href="login" class="button">
+
+                    Logout
+
+                </a>
+
+              </p>
+        </div>
+
+
+        <center>
+            <p class="info">
+               Hello
+                There is some info for you
+                    Check links.
+            </p>
+        </center>
+</body>
+</html>

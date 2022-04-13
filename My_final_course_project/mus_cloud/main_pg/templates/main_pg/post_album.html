@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post album</title>
+</head>
+
+        <style>
+
+         p.form {
+           font-size: 120%;
+           clear: both;
+           text-align: right;
+         }
+
+          label{
+            float:left;
+         }
+
+         div.main {
+
+            float:left;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+
+         }
+
+
+    </style>
+
+
+
+
+
+
+<body>
+
+    <a href="main_page">
+        Back
+    </a>
+
+    <div class="main">
+
+        <form action="{% url 'post_album' %}" method="POST" enctype="multipart/form-data">
+
+            <p class="form">
+
+                <label>
+
+                    Name album
+
+                </label>
+
+                <input type="text" name="name_album">
+            </p>
+
+               <p class="form">
+
+                    <label>
+
+                        Album
+
+                    </label>
+                <input type="file" name="album">
+            </p>
+
+            <p class="form">
+
+                <input type="submit" value="submit">
+            </p>
+
+
+
+            {% for message in messages %}
+                {{message}}<br>
+            {% endfor %}
+
+        </form>
+
+    </div>
+
+</body>
+</html>

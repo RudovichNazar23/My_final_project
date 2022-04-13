@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find artist</title>
+</head>
+<body>
+    <p>
+        <a href="main_page">
+            Back
+        </a>
+    </p>
+
+    <center>
+        <form action="{% url 'find_other_users' %}" method="POST">
+            <input type="text" name="user"><br>
+            <input type="submit" value="submit">
+
+        </form>
+    </center>
+    {% for user in users %}
+        {{user.username}}
+    {% endfor %}
+</body>
+</html>

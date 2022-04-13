@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your profile</title>
+</head>
+<body>
+    <p>
+    </p>
+
+    <p>
+        <a href="main_page">
+            Back
+        </a>
+    </p>
+
+    {% for p in posts %}
+        {{p.username}}
+        {{p.name_song}}
+        {{p.song}}
+    {% endfor %}
+</body>
+</html>

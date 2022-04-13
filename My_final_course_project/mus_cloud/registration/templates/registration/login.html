@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+    <h1>
+        Login
+    </h1>
+
+        <style>
+         p {
+       font-size: 120%;
+       clear: both;
+       text-align: right;
+            }
+         label{
+            float:left;
+         }
+
+         div.main {
+
+            float:left;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+
+         }
+        </style>
+
+<body>
+    <center>
+        <div class="main">
+            <form action="{% url 'login' %}" method="POST">
+                <p>
+                    {{log_in_form.as_p}}
+                </p>
+                <p>
+                    <input type="submit" value="submit">
+                </p>
+
+                {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        {{ message }}<br>
+                        <a class="close" href="login" data-dismiss="alert">Click here</a>
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+    </center>
+</body>
+</html>

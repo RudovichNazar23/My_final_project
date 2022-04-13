@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+        <style>
+         p {
+           font-size: 120%;
+           clear: both;
+           text-align: right;
+         }
+         label{
+            float:left;
+         }
+
+         div.main {
+
+            float:left;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+
+         }
+
+
+
+
+
+        </style>
+
+
+<body>
+    <div class="main">
+      <center>
+
+          <form action="{% url 'registration' %}" method="POST">
+
+              <p>
+                <label for="id_username">Username</label>
+                <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username">
+              </p>
+
+
+              <p>
+                <label for="id_password1">Password</label>
+                <input type="password" name="password1" autocomplete="new-password" required id="id_password1" align="center">
+              </p>
+
+
+              <p>
+                    <label for="id_password2">
+                        Password confirmation
+
+                    </label>
+                        <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
+              </p>
+
+              <p>
+                  <input type="submit" value="submit">
+              </p>
+
+              {% for message in messages %}
+
+                <div class="alert alert-success">
+                       {{ message }}<br>
+                    <a class="close" href="registration" data-dismiss="alert">Click here</a>
+                </div>
+
+              {% endfor %}
+
+          </form>
+      </center>
+    </div>
+</body>
+</html>
