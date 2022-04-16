@@ -15,9 +15,24 @@
     </p>
 
     {% for p in posts %}
-        {{p.username}}
-        {{p.name_song}}
-        {{p.song}}
+        <h3>
+            {{p.user.username}}<br>
+        </h3>
+            {{p.name_song}} : {{p.song}}<br>
+            {{p.name_album}} : {{p.album}}<br>
+
+
+        <audio controls>
+            {{p.name_song}} : {{p.song}}
+            <source src="media/media/детский_сад.mp3">
+
+        </audio>
+
+        <audio controls>
+            {{p.name_album}} : {{p.album}}
+            <source src="media/media/album/smile_fuck.mp3">
+        </audio>
     {% endfor %}
+
 </body>
 </html>

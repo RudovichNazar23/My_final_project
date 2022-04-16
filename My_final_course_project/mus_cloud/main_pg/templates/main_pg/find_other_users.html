@@ -12,14 +12,18 @@
     </p>
 
     <center>
-        <form action="{% url 'find_other_users' %}" method="POST">
-            <input type="text" name="user"><br>
+        <form action="{% url 'find_other_users' %}" method="GET">
+            <input type="text" name="username"><br>
             <input type="submit" value="submit">
 
         </form>
     </center>
-    {% for user in users %}
-        {{user.username}}
+    {% for user in users %}<br>
+        {{user.username}}<br>
+    {% endfor %}
+
+    {% for message in messages %}
+        {{message}}
     {% endfor %}
 </body>
 </html>

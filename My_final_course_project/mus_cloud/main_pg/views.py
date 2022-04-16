@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .forms import SongForm, AlbumForm
-from .models import Song, User
+from .forms import SongForm, AlbumForm, SearchUserForm
+from .models import Song, User, Album
 from django.contrib import messages
 from django.views.generic.edit import FormView
 
@@ -47,40 +47,26 @@ def post_song(request):
             return redirect("post_song")
 
 @csrf_exempt
-class FileFieldView(FormView):
-    form_class = AlbumForm
-    template_name = 'post_album.html'  # Replace with your template.
-    success_url = 'main_page'  # Replace with your URL or reverse().
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        files = request.FILES.getlist('album')
-        if form.is_valid():
-            for f in files:
-                f.save()
-            return messages.success(request, "saved successfully")
-        else:
-            return messages.error(request, "something is going wrong , please, try again")
-
-'''def post_album(request):
+def post_album(request):
     if request.method == "GET":
-        return render(request, "main_pg/post_album.html")
+        form = AlbumForm()
+        return render(request, "main_pg/post_album.html", {"form": form})
 
     elif request.method == "POST":
-        album_form = AlbumForm(request.POST)
 
-        if album_form.is_valid():
-            files = album_form.cleaned_data["album"]
+        form = AlbumForm(request.POST, request.FILES)
 
-            for f in files:
-                f.save()
+        if form.is_valid():
+
+            album = Album(album_editor=request.user, **form.cleaned_data)
+            album.save()
             messages.success(request, "saved successfully")
             return redirect("post_album")
 
         else:
-            messages.error(request, "something is going wrong , please, try again")
-            return redirect("post_album")'''
+            messages.error(request, "please, try again")
+            return redirect("post_album")
+
 
 @csrf_exempt
 def find_other_users(request):
@@ -91,5 +77,4 @@ def find_other_users(request):
         print(all_users)
         return render(request, "main_pg/find_other_users.html", all_users)
 
-    elif request.method == "POST":
-        pass
+
