@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find users</title>
+</head>
+<body>
+    <p>
+        <a href="main_page">
+            Back
+        </a>
+    </p>
+
+    <center>
+        <form action="{% url 'search_user' %}" method="GET">
+            {% csrf_token %}
+            <input type="text"   name="q"  placeholder="Search by username"><br>
+            <input type="submit" value="search">
+        </form>
+            {% for User in object_list %}
+                {{User.username}}
+            {% endfor %}
+    </center>
+
+    <center>
+        {% for user in users %}<br>
+            <a href="{% url 'other_user_profile' user.id %}">{{user.username}}</a><br>
+        {% endfor %}
+
+    </center>
+
+
+</body>
+</html>
