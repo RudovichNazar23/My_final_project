@@ -3,7 +3,9 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import SongForm, AlbumForm, SearchUserForm
 from .models import Song, User, Album
 from django.contrib import messages
-from django.views.generic.edit import FormView
+from django.views.generic import ListView
+from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 @csrf_exempt
@@ -84,15 +86,21 @@ def post_album(request):
         else:
             return self.form_invalid(form)'''
 
+class SearchResultsView(ListView):
+    model = User
+    template_name = 'main_pg/search_user.html'
 
-@csrf_exempt
-def find_other_users(request):
+    def get_queryset(self):
+        query = SearchUserForm(self.request.GET.get("q"))
+        object_list = User.objects.filter(
+            Q(username__icontains=query)
+        )
+        return object_list
+
+'''def search_user(request):
     all_users = {
         "users": User.objects.all()
-    }
-    search_form = SearchUserForm(request.GET)
-
-    return render(request, "main_pg/find_other_users.html", all_users)
+    }'''
 
 
 @csrf_exempt
