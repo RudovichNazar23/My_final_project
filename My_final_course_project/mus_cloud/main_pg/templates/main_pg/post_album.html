@@ -2,26 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Post album bitch</title>
+    <title>Post album</title>
 </head>
     <style>
+        div.main {
+            float: left;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
     </style>
 
 
 
 <body>
-    <form action="{% url 'post_album' %}" method="post" enctype="multipart/form-data">
-        <p>
-            <center>
+    <p>
+        <a href="main_page">
+            Back
+        </a>
+    </p>
+    <center>
+        <div class="main">
+
+            <form action="{% url 'post_album' %}" method="post" enctype="multipart/form-data">
+                <p>
                     {{ form.as_p }}
-            </center>
-        </p>
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-        <p>
-            <input type="submit" value="post">
-        </p>
-    </form>
+                </p>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                <p>
+                    <input type="submit" value="post">
+                </p>
+            </form>
+         </div>
+    </center>
 </body>
 </html>

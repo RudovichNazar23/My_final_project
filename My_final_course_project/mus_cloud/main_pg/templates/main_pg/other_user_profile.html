@@ -6,12 +6,16 @@
 </head>
 <body>
     <h3>
-       {{user}}
+        {{user}}
     </h3>
-    <p>
-        {% for user_post in posts %}
-            {{user_post.name_song}} : {{user_post.song}}
-        {% endfor %}
-    </p>
+    <center>
+        <p>
+            {% for user_post in user_posts %}
+                {{user_post.name_song}} : {{user_post.song}}
+
+            {% endfor %}
+        </p>
+    </center>
+
 </body>
 </html>

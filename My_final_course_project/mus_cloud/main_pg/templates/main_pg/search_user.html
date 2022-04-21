@@ -17,13 +17,10 @@
             <input type="text"   name="q"  placeholder="Search by username"><br>
             <input type="submit" value="search">
         </form>
-            {% for User in object_list %}
-                {{User.username}}
-            {% endfor %}
     </center>
 
     <center>
-        {% for user in users %}<br>
+        <{% for user in users %}<br>
             <a href="{% url 'other_user_profile' user.id %}">{{user.username}}</a><br>
         {% endfor %}
 

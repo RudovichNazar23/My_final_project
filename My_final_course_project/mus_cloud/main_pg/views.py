@@ -86,28 +86,31 @@ def post_album(request):
         else:
             return self.form_invalid(form)'''
 
-class SearchResultsView(ListView):
+'''class SearchResultsView(ListView):
     model = User
     template_name = 'main_pg/search_user.html'
 
     def get_queryset(self):
-        query = SearchUserForm(self.request.GET.get("q"))
+        query = self.request.GET.get("q")
         object_list = User.objects.filter(
             Q(username__icontains=query)
         )
-        return object_list
+        return object_list'''
 
-'''def search_user(request):
-    all_users = {
-        "users": User.objects.all()
-    }'''
-
+def search_user(request):
+    if request.method == "GET":
+        all_users = {
+            "users": User.objects.all()
+        }
+        return render(request, "main_pg/search_user.html",  all_users)
 
 @csrf_exempt
 def other_user_profile(request, id_user: int):
     user = get_object_or_404(User, id=id_user)
-    user_posts = {
-        "posts": Song.objects.filter(user=user)
+    user_post = Song.objects.filter(user=user)
+    context = {
+        "user": user,
+        "user_posts": user_post
     }
-    return render(request, "main_pg/other_user_profile.html", {"posts": user_posts,
-                                                               "user": user}, )
+    print(context)
+    return render(request, "main_pg/other_user_profile.html", context)
