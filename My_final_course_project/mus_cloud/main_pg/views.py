@@ -4,7 +4,6 @@ from .forms import SongForm, AlbumForm, SearchUserForm
 from .models import Song, User, Album
 from django.contrib import messages
 from django.views.generic import ListView
-from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -86,23 +85,23 @@ def post_album(request):
         else:
             return self.form_invalid(form)'''
 
-'''class SearchResultsView(ListView):
+class SearchResultsView(ListView):
     model = User
     template_name = 'main_pg/search_user.html'
 
     def get_queryset(self):
         query = self.request.GET.get("q")
         object_list = User.objects.filter(
-            Q(username__icontains=query)
+            username__icontains=query
         )
-        return object_list'''
+        return object_list
 
-def search_user(request):
+'''def search_user(request):
     if request.method == "GET":
         all_users = {
             "users": User.objects.all()
         }
-        return render(request, "main_pg/search_user.html",  all_users)
+        return render(request, "main_pg/search_user.html",  all_users)'''
 
 @csrf_exempt
 def other_user_profile(request, id_user: int):

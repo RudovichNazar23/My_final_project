@@ -36,18 +36,19 @@ def registration(request):
             password_2 = form.cleaned_data.get("password2")
             print(password_2)
 
-            if password_1 != password_2:
-                return messages.error(request, "passwords don't match")
-
-            else:
+            if password_1 == password_2:
                 user = authenticate(username=username, password=password_1)
 
                 login(request, user)
 
                 return redirect("login")
 
+            else:
+                return messages.error(request, "passwords don't match")
+
         else:
-            messages.error(request, "username or password are not correct")
+            messages.error(request, "username or password are not correct: "
+                                    "check password or username")
             return redirect("registration")
 
 
