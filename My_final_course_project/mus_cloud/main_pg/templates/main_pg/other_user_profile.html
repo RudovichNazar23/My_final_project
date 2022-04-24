@@ -15,7 +15,14 @@
                     <source src="media/media/"><br>
                 </audio>
             {% endfor %}
+        </p><br>
+
+        <p>
+            {% for album in user_album %}
+                {{album.name_album}} : {{album.album}}<br>
+            {% endfor %}
         </p>
+
     </center>
 
 </body>

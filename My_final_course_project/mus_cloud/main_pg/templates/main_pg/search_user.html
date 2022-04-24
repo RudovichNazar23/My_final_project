@@ -16,11 +16,6 @@
             {% csrf_token %}
             <input type="text"   name="username"  placeholder="Search by username"><br>
             <input type="submit" value="search"><br>
-            <p>
-                {% for result in results %}
-                    {{username}}
-                {% endfor %}
-            </p>
         </form>
         <center>
                 {% for result in results %}

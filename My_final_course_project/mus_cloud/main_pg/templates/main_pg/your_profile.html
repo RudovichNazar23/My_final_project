@@ -29,5 +29,12 @@
         </audio>
     {% endfor %}
 
+
+    <p>
+        {% for album in albums %}
+            {{album.name_album}} : {{album.album}}<br>
+        {% endfor %}
+    </p>
+
 </body>
 </html>
