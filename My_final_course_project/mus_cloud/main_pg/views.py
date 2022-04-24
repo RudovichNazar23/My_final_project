@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from .forms import SongForm, AlbumForm, SearchUserForm
+from .forms import SongForm, AlbumForm
 from .models import Song, User, Album
 from django.contrib import messages
-from django.views.generic import ListView
-from django.db.models import Q
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 @csrf_exempt
@@ -21,7 +19,8 @@ def main_page(request):
 def your_profile(request):
     if request.method == "GET":
         user_post = {
-            "posts": Song.objects.filter(user=request.user)
+            "posts": Song.objects.filter(user=request.user),
+            "albums": Album.objects.filter(album_editor=request.user)
         }
         print(user_post)
         return render(request, "main_pg/your_profile.html", user_post)
@@ -69,45 +68,33 @@ def post_album(request):
             messages.error(request, "please, try again")
             return redirect("post_album")
 
+def search_user(request):
+    if request.method == "POST":
 
-'''class AlbumFormView(FormView):
-    form_class = AlbumForm
-    template_name = 'post_album.html'  # Replace with your template.
-    success_url = 'post_album'  # Replace with your URL or reverse().
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        files = request.FILES.getlist('album')
-        if form.is_valid():
-            for f in files:
-                f.save()  # Do something with each file.
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)'''
-
-class SearchResultsView(ListView):
-    model = User
-    template_name = 'main_pg/search_user.html'
-
-    def get_queryset(self):
-        query = SearchUserForm(self.request.GET.get("q"))
-        object_list = User.objects.filter(
-            Q(username__icontains=query)
+        username = request.POST["username"]
+        result = User.objects.filter(
+            username__contains=username
         )
-        return object_list
+        return render(request, "main_pg/search_user.html", {"username": username,
+                                                            "results": result})
 
-'''def search_user(request):
-    all_users = {
-        "users": User.objects.all()
-    }'''
+    else:
+
+        all_users = {
+            "users": User.objects.all()
+        }
+        return render(request, "main_pg/search_user.html", all_users)
 
 
 @csrf_exempt
 def other_user_profile(request, id_user: int):
     user = get_object_or_404(User, id=id_user)
-    user_posts = {
-        "posts": Song.objects.filter(user=user)
+    user_post = Song.objects.filter(user=user)
+    user_album = Album.objects.filter(album_editor=user)
+    context = {
+        "user": user,
+        "user_posts": user_post,
+        "user_album": user_album
     }
-    return render(request, "main_pg/other_user_profile.html", {"posts": user_posts,
-                                                               "user": user}, )
+    print(context)
+    return render(request, "main_pg/other_user_profile.html", context)
