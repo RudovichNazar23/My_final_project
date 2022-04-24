@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from .forms import SongForm, AlbumForm, SearchUserForm
@@ -85,23 +86,36 @@ def post_album(request):
         else:
             return self.form_invalid(form)'''
 
-class SearchResultsView(ListView):
+'''class SearchResultsView(ListView):
     model = User
     template_name = 'main_pg/search_user.html'
 
     def get_queryset(self):
-        query = self.request.GET.get("q")
-        object_list = User.objects.filter(
+        query = SearchUserForm(self.request.GET.get("username"))
+        object_list = {
+            "results": User.objects.filter(
             username__icontains=query
-        )
-        return object_list
+        )}
+        return object_list'''
 
-'''def search_user(request):
-    if request.method == "GET":
+
+def search_user(request):
+    if request.method == "POST":
+
+        username = request.POST["username"]
+        result = User.objects.filter(
+            username__contains=username
+        )
+        return render(request, "main_pg/search_user.html", {"username": username,
+                                                            "results": result})
+
+    else:
+
         all_users = {
             "users": User.objects.all()
         }
-        return render(request, "main_pg/search_user.html",  all_users)'''
+        return render(request, "main_pg/search_user.html", all_users)
+
 
 @csrf_exempt
 def other_user_profile(request, id_user: int):

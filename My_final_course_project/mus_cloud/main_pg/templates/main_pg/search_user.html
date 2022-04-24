@@ -12,18 +12,36 @@
     </p>
 
     <center>
-        <form action="{% url 'search_user' %}" method="GET">
+        <form action="{% url 'search_user' %}" method="POST">
             {% csrf_token %}
-            <input type="text"   name="q"  placeholder="Search by username"><br>
-            <input type="submit" value="search">
+            <input type="text"   name="username"  placeholder="Search by username"><br>
+            <input type="submit" value="search"><br>
+            <p>
+                {% for result in results %}
+                    {{username}}
+                {% endfor %}
+            </p>
         </form>
+        <center>
+                {% for result in results %}
+                    <a href="{% url  'other_user_profile' result.id %}">
+                        {{result}}<br>
+                    </a>
+                {% endfor %}
+        </center>
+
     </center>
 
     <center>
-        <{% for user in users %}<br>
+        {% for user in users %}<br>
             <a href="{% url 'other_user_profile' user.id %}">{{user.username}}</a><br>
         {% endfor %}
 
+        <p>
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        </p>
     </center>
 
 
