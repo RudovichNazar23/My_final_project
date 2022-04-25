@@ -4,8 +4,6 @@ from .forms import SongForm, AlbumForm
 from .models import Song, User, Album
 from django.contrib import messages
 
-
-
 @csrf_exempt
 def main_page(request):
     if request.method == "GET":
@@ -67,6 +65,7 @@ def post_album(request):
         else:
             messages.error(request, "please, try again")
             return redirect("post_album")
+
 
 def search_user(request):
     if request.method == "POST":
