@@ -3,7 +3,7 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title> {{user.username}}</title>
+    <title> {{user.username}} Page</title>
 </head>
 <body>
     <h3>
@@ -20,7 +20,10 @@
 
         <p>
             {% for album in user_album %}
-                {{album.name_album}} : {{album.album}}<br>
+                {{album.name_album}}<br>
+                <audio>
+                    <source src="{{album.album.url}}" type="audio/mpeg"><br>
+                </audio>
             {% endfor %}
         </p>
 

@@ -31,11 +31,14 @@
                 <p>
                     {{ form.as_p }}
                 </p>
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
                 <p>
                     <input type="submit" value="post">
+                </p>
+
+                <p>
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
                 </p>
             </form>
          </div>

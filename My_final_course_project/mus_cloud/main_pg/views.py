@@ -38,7 +38,7 @@ def post_song(request):
         if song_form.is_valid():
             user = Song(user=request.user, **song_form.cleaned_data)
             user.save()
-            messages.success(request, "OK")
+            messages.success(request, "Saved successfully")
             return redirect("post_song")
 
         else:
@@ -61,7 +61,7 @@ def post_album(request):
             for file in files:
                 album = Album(album_editor=request.user, album=file, name_album=name_album)
                 album.save()
-            messages.success(request, "saved successfully")
+            messages.success(request, "Saved successfully")
             return redirect("post_album")
 
         else:

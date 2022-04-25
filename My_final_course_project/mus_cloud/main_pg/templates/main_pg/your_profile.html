@@ -19,14 +19,21 @@
         <h3>
             {{p.user.username}}<br>
         </h3>
-            {{p.name_song}}<br> <audio controls> <source src="{{p.song.url}}" type="audio/mpeg"></audio><br>
+            <h3>{{p.name_song}}</h3><br>
+            <audio controls>
+
+                <source src="{{p.song.url}}" type="audio/mpeg">
+
+            </audio><br>
     {% endfor %}
 
 
     <p>
         {% for album in albums %}
+        <h4>{{album.name_album}}</h4><br>
         <audio controls>
-           <source src="media/media/"> {{album.name_album}} : {{album.album}}<br>
+                <source src="{{album.album.url}}" type="audio/mpeg">
+            </audio>
         </audio>
         {% endfor %}
     </p>
