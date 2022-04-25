@@ -55,10 +55,12 @@ def post_album(request):
     elif request.method == "POST":
 
         form = AlbumForm(request.POST, request.FILES)
-
+        files = request.FILES.getlist("album")
+        name_album = form.data.get("name_album")
         if form.is_valid():
-            album = Album(album_editor=request.user, **form.cleaned_data)
-            album.save()
+            for file in files:
+                album = Album(album_editor=request.user, album=file, name_album=name_album)
+                album.save()
             messages.success(request, "saved successfully")
             return redirect("post_album")
 
