@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from main_pg.views import main_page
 
 class TestViews(TestCase):
     def setUp(self):
@@ -11,3 +10,5 @@ class TestViews(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "main_pg/main_page.html")
+
+
