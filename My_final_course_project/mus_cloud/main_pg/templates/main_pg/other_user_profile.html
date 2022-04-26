@@ -9,10 +9,15 @@
     <h3>
         {{user}}
     </h3>
+    <p>
+        <a href="{% url 'search_user' %}">
+            Back
+        </a>
+    </p>
     <center>
         <p>
             {% for user_post in user_posts %}
-                {{user_post.name_song}}<br>
+        <h3>{{user_post.name_song}}</h3><br>
                 <audio controls><source src="{{user_post.song.url}}" type="audio/mpeg"><br>
                 </audio>
             {% endfor %}
@@ -20,8 +25,8 @@
 
         <p>
             {% for album in user_album %}
-                {{album.name_album}}<br>
-                <audio>
+                <h3>{{album.name_album}}</h3><br>
+                <audio controls>
                     <source src="{{album.album.url}}" type="audio/mpeg"><br>
                 </audio>
             {% endfor %}
