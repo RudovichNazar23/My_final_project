@@ -13,3 +13,7 @@ class AlbumForm(forms.Form):
 
 class SearchUserForm(forms.Form):
     username = forms.CharField(max_length=100)
+
+class Add_more_info(forms.Form):
+    telegram_link = forms.URLField(max_length=1000)
+    instagram_link = forms.URLField(max_length=1000)

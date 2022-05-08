@@ -13,6 +13,17 @@
         <a href="main_page">
             Back
         </a>
+        <center>
+            {% for link in more_info %}
+            <a href="{{link.telegram_link}}">{{link.telegram_link}}</a><br>
+            <a href="{{link.instagram_link}}"> {{link.instagram_link}}</a><br>
+            {% endfor %}
+        </center>
+        <center>
+            <a href="add_more_information">
+                Add more information
+            </a>
+        </center>
     </p>
 
     {% for p in posts %}
@@ -34,7 +45,6 @@
         <audio controls>
                 <source src="{{album.album.url}}" type="audio/mpeg">
             </audio>
-        </audio>
         {% endfor %}
     </p>
 
