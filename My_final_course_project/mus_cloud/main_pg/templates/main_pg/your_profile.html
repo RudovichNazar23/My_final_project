@@ -13,6 +13,19 @@
         <a href="main_page">
             Back
         </a>
+        <center>
+            {% for info in more_info %}
+            <a href="{{info.first_link}}"> {{info.first_link}} </a>  <br>
+                <a href="{{info.second_link}}"> {{info.second_link}}</a> <br>
+                {{info.email}}<br>
+            {% endfor %}
+        </center>
+
+        <center>
+            <a href="add_more_information">
+                Add more information
+            </a>
+        </center>
     </p>
 
     {% for p in posts %}
@@ -34,7 +47,6 @@
         <audio controls>
                 <source src="{{album.album.url}}" type="audio/mpeg">
             </audio>
-        </audio>
         {% endfor %}
     </p>
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Album, Song
+from .models import Album, Song, User_profile
 
 
 class SongForm(forms.Form):
@@ -13,3 +13,8 @@ class AlbumForm(forms.Form):
 
 class SearchUserForm(forms.Form):
     username = forms.CharField(max_length=100)
+
+class Add_more_info(forms.ModelForm):
+    class Meta:
+        model = User_profile
+        fields = ["first_link", "second_link", "email"]

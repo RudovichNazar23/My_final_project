@@ -16,3 +16,12 @@ class Album(models.Model):
 
     def __str__(self):
         return f"{self.album_editor} : {self.name_album}"
+
+class User_profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_link = models.URLField(max_length=500, null=True)
+    second_link = models.URLField(max_length=500, null=True)
+    email = models.EmailField(max_length=500, null=True)
+
+    def __str__(self):
+        return f"{self.user}"

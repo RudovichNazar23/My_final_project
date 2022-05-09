@@ -10,6 +10,20 @@
         {{user}}
     </h3>
     <p>
+        {% for link in more_info %}
+            <a href="{{link.first_link}}">
+                {{link.first_link}}
+            </a><br>
+
+            <a href="{{link.second_link}}">
+                {{link.second_link}}
+            </a><br>
+
+                {{link.email}}<br>
+
+        {% endfor %}
+    </p><br>
+    <p>
         <a href="{% url 'search_user' %}">
             Back
         </a>
