@@ -12,7 +12,8 @@ def main_page(request):
 @csrf_exempt
 def add_more_information(request):
     if request.method == "GET":
-        return render(request, "main_pg/add_more_info.html")
+        form = Add_more_info()
+        return render(request, "main_pg/add_more_info.html", {"form": form})
 
     elif request.method == "POST":
         info_form = Add_more_info(request.POST)
@@ -106,10 +107,12 @@ def other_user_profile(request, id_user: int):
     user = get_object_or_404(User, id=id_user)
     user_post = Song.objects.filter(user=user)
     user_album = Album.objects.filter(album_editor=user)
+    user_links = User_profile.objects.filter(user=user)
     context = {
         "user": user,
         "user_posts": user_post,
-        "user_album": user_album
+        "user_album": user_album,
+        "more_info": user_links
     }
     print(context)
     return render(request, "main_pg/other_user_profile.html", context)

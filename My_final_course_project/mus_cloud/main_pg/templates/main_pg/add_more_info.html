@@ -12,8 +12,7 @@
     </p>
     <center>
         <form action="{% url 'add_more_information' %}" method="POST">
-            first link <input name="first_link" type="url"><br>
-            second link <input name="second_link" type="url"><br>
+            {{form.as_p}}<br>
             <button type="submit">
                 Post
             </button>
