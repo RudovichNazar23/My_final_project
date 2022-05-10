@@ -18,3 +18,4 @@ class Add_more_info(forms.ModelForm):
     class Meta:
         model = User_profile
         fields = ["first_link", "second_link", "email"]
+

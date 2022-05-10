@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Delete song</title>
+</head>
+<body>
+    {% for song in songs %}
+        {{song.name_song}}<br>
+
+        <audio controls>
+            <source src="{{song.song.url}}" type="audio/mpeg">
+        </audio><br>
+
+    {% endfor %}
+
+</body>
+</html>

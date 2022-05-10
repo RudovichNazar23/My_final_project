@@ -60,6 +60,15 @@ def post_song(request):
             messages.error(request, "please, try again")
             return redirect("post_song")
 
+@csrf_exempt
+def delete_song(request, id_song: int):
+    if request.method == "GET":
+        song = get_object_or_404(Song, id=id_song)
+        return render(request, "main_pg/delete_song.html", {"songs": song})
+
+    elif request.method == "POST":
+        pass
+
 
 @csrf_exempt
 def post_album(request):
