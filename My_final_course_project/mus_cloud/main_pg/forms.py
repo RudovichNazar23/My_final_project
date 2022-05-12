@@ -19,3 +19,8 @@ class Add_more_info(forms.ModelForm):
         model = User_profile
         fields = ["first_link", "second_link", "email"]
 
+class SearchToDeleteSong(forms.Form):
+    name_song = forms.CharField(max_length=100)
+
+class DeleteSongForm(forms.Form):
+    song = forms.CharField(max_length=100)

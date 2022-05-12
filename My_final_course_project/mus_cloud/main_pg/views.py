@@ -61,13 +61,30 @@ def post_song(request):
             return redirect("post_song")
 
 @csrf_exempt
-def delete_song(request, id_song: int):
+def delete_song(request):
+
+    if request.method == "POST":
+
+        name_song = request.POST["name_song"]
+        result = Song.objects.filter(
+            name_song__contains=name_song
+        )
+        return render(request, "main_pg/delete_song.html", {"results": result})
+
+    else:
+        user_songs = Song.objects.filter(user=request.user)
+        return render(request, "main_pg/delete_song.html", {"songs": user_songs})
+
+@csrf_exempt
+def deleting_process(request, id_song: int):
     if request.method == "GET":
-        song = get_object_or_404(Song, id=id_song)
-        return render(request, "main_pg/delete_song.html", {"songs": song})
+        song = Song.objects.filter(id=id_song)
+        return render(request, "main_pg/deleting_song.html", {"song": song})
 
     elif request.method == "POST":
-        pass
+        song = Song.objects.filter(id=id_song)
+        song.delete()
+        return redirect("your_profile")
 
 
 @csrf_exempt
