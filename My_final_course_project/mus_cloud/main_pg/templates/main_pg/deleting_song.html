@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Delete_song</title>
+</head>
+<body>
+    <center>
+        Do you really want to delete this song ?
+        <h4>
+            {% for song in song  %}
+                {{song.name_song}}<br>
+                <audio controls>
+                    <source src="{{song.song.url}}" type="audio/mpeg">
+                </audio>
+            {% endfor %}
+        </h4>
+        <form method="POST">
+            <button type="submit">
+                Delete
+            </button>
+        </form>
+    </center>
+</body>
+</html>

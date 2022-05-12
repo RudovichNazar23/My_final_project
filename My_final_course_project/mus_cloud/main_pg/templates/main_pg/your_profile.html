@@ -20,7 +20,9 @@
                 {{info.email}}<br>
             {% endfor %}
         </center>
-
+    {% for message in message %}
+        {{message}}
+    {% endfor %}
         <center>
             <a href="add_more_information">
                 Add more information

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Delete song</title>
+</head>
+<body>
+    <form action="{% url 'delete_song' %}" method="POST">
+        <input type="text"   name="name_song" placeholder="Search by name song"><br>
+        <input type="submit" value="search"><br>
+    </form>
+    {% for result in results %}
+    <center>
+        <a href="{% url 'deleting_song' song.id %}">
+            <h3>{{result.name_song}}<br></h3>
+        </a>
+    </center>
+
+    {% endfor %}
+
+    <center>
+            {% for song in songs %}
+                <p>
+                    <a href="{% url 'deleting_song' song.id %}">
+                        {{song.name_song}}
+                    </a>
+                </p><br>
+
+                <audio controls>
+                    <source src="{{song.song.url}}" type="audio/mpeg">
+                </audio><br>
+            {% endfor %}
+    </center>
+
+
+</body>
+</html>
