@@ -3,6 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import SongForm, AlbumForm, Add_more_info
 from .models import Song, User, Album, User_profile
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 @csrf_exempt
 def main_page(request):
@@ -35,6 +37,7 @@ def your_profile(request):
             "albums": Album.objects.filter(album_editor=request.user),
             "more_info": User_profile.objects.filter(user=request.user)
         }
+
         print(user_post)
         return render(request, "main_pg/your_profile.html", user_post)
 
