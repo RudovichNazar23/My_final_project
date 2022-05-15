@@ -5,14 +5,37 @@
     <meta charset="UTF-8">
     <title>Your profile</title>
 </head>
-<body>
-    <p>
-    </p>
+    <style>
+          .button {
+            border: 1px solid #333;
+            display: inline-block;
+            padding: 5px 15px;
+            text-decoration: none;
+            color: #000;
+          }
 
+
+           .button:hover {
+                box-shadow: 0 0 5px rgba(0,0,0,0.3);
+                background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
+                color: #a00;
+           }
+    </style>
+<body>
     <p>
         <a href="main_page">
             Back
         </a>
+
+        <p class="button">
+
+          <a href="delete_song" class="button">
+
+              Delete song
+
+          </a>
+
+        </p>
         <center>
             {% for info in more_info %}
             <a href="{{info.first_link}}"> {{info.first_link}} </a>  <br>
