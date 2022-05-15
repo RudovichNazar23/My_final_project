@@ -29,7 +29,7 @@ def add_more_information(request):
             messages.error(request, "not valid")
             return redirect("add_more_information")
 
-@csrf_exempt
+"""@csrf_exempt
 def your_profile(request):
     if request.method == "GET":
         user_post = {
@@ -42,8 +42,20 @@ def your_profile(request):
         return render(request, "main_pg/your_profile.html", user_post)
 
     elif request.method == "POST":
-        pass
+        pass"""
 
+@csrf_exempt
+def your_profile(request):
+    songs = Song.objects.filter(user=request.user)
+    albums = Album.objects.filter(album_editor=request.user)
+
+    p_songs = Paginator(songs, 1)
+
+    page = request.GET.get("page")
+
+    song = p_songs.get_page(page)
+
+    return render(request, "main_pg/your_profile.html", {"songs": song})
 
 @csrf_exempt
 def post_song(request):
