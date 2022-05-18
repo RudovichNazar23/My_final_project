@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Song</title>
+</head>
+<body>
+
+<p>
+    <a href="your_profile">
+        Back to profile
+    </a>
+</p>
+
+<p>
+    {% for song in songs %}
+        {{song.name_song}}<br>
+
+        <audio controls>
+
+            <source src="{{song.song.url}}" type="audio/mpeg">
+
+        </audio>
+
+
+    {% endfor %}
+</p>
+
+{% if songs.has_previous %}
+    <a href="?page=1">
+        &laquo First
+    </a><br>
+
+    <a href="?page={{ songs.previous_page_number }}">
+        Previous
+    </a>
+{% endif %}
+
+Page {{ songs.number }} of {{ songs.paginator.num_pages }}
+
+{% if songs.has_next %}
+    <a href="?page={{ songs.next_page_number }}">
+        next
+    </a><br>
+
+    <a href="?page={{ songs.paginator.num_pages }}">
+        >Last &raquo
+    </a>
+
+
+{% endif %}
+
+</body>
+</html>

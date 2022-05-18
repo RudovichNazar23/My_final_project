@@ -11,6 +11,7 @@ def main_page(request):
     if request.method == "GET":
         return render(request, "main_pg/main_page.html")
 
+
 @csrf_exempt
 def add_more_information(request):
     if request.method == "GET":
@@ -29,6 +30,7 @@ def add_more_information(request):
             messages.error(request, "not valid")
             return redirect("add_more_information")
 
+
 """@csrf_exempt
 def your_profile(request):
     if request.method == "GET":
@@ -44,18 +46,13 @@ def your_profile(request):
     elif request.method == "POST":
         pass"""
 
+
 @csrf_exempt
 def your_profile(request):
-    songs = Song.objects.filter(user=request.user)
-    albums = Album.objects.filter(album_editor=request.user)
+    if request.method == "GET":
 
-    p_songs = Paginator(songs, 1)
+        return render(request, "main_pg/your_profile.html")
 
-    page = request.GET.get("page")
-
-    song = p_songs.get_page(page)
-
-    return render(request, "main_pg/your_profile.html", {"songs": song})
 
 @csrf_exempt
 def post_song(request):
@@ -75,9 +72,9 @@ def post_song(request):
             messages.error(request, "please, try again")
             return redirect("post_song")
 
+
 @csrf_exempt
 def delete_song(request):
-
     if request.method == "POST":
 
         name_song = request.POST["name_song"]
@@ -89,6 +86,7 @@ def delete_song(request):
     else:
         user_songs = Song.objects.filter(user=request.user)
         return render(request, "main_pg/delete_song.html", {"songs": user_songs})
+
 
 @csrf_exempt
 def deleting_process(request, id_song: int):
@@ -157,3 +155,31 @@ def other_user_profile(request, id_user: int):
     }
     print(context)
     return render(request, "main_pg/other_user_profile.html", context)
+
+
+@csrf_exempt
+def view_songs(request):
+    if request.method == "GET":
+        songs = Song.objects.filter(user=request.user)
+
+        p_songs = Paginator(songs, 1)
+
+        page = request.GET.get("page")
+
+        song = p_songs.get_page(page)
+
+        return render(request, "main_pg/song_page.html", {"songs": song})
+
+
+@csrf_exempt
+def view_albums(request):
+    if request.method == "GET":
+        albums = Album.objects.filter(album_editor=request.user)
+
+        p_albums = Paginator(albums, 1)
+
+        page = request.GET.get("page")
+
+        album = p_albums.get_page(page)
+
+        return render(request, "main_pg/album_page.html", {"albums": album})

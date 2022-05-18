@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Albums</title>
+</head>
+<body>
+
+<p>
+    <a href="your_profile">
+        Back to profile
+    </a>
+</p>
+
+{% for album in albums %}
+    <p>{{album.name_album}}</p>
+{% endfor %}
+
+{% for album in albums %}
+    <p>
+        <audio controls>
+            <source src="{{album.album.url}}" type="audio/mpeg">
+        </audio>
+    </p>
+{% endfor %}
+
+{% if albums.has_previous %}
+    <a href="?page=1">
+        &laquo First
+    </a>
+
+    <a href="?page={{ songs.previous_page_number }}">
+        Previous
+    </a>
+{% endif %}
+
+Page {{ albums.number }} of {{ albums.paginator.num_pages }}
+
+{% if albums.has_next %}
+    <a href="?page={{ albums.next_page_number }}">
+        next
+    </a><br>
+
+    <a href="?page={{ albums.paginator.num_pages }}">
+        >Last &raquo
+    </a>
+
+
+{% endif %}
+
+</body>
+</html>
