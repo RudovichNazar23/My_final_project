@@ -53,14 +53,17 @@
         </center>
     </p>
 
-    <!--{% for p in posts %}
-            <h3>{{p.name_song}}</h3><br>
-            <audio controls>
+<p>
+    <a href="view_songs">
+        Songs
+    </a>
+</p>
 
-                <source src="{{p.song.url}}" type="audio/mpeg">
-
-            </audio><br>
-    {% endfor %}-->
+<p>
+    <a href="view_albums">
+        Albums
+    </a>
+</p>
 
 
     <p>
@@ -77,6 +80,15 @@ Has Previous: {{songs.has_previous}}<br>
 Has Next: {{songs.has_next}}<br>
 Current page: {{songs.number}}
 <hr><br>
+    <p>
+        {% for song in songs %}
+            {{song.name_song}}<br>
+            <audio controls>
+                <source src="{{song.song.url}}" type="audio/mpeg">
+            </audio>
+
+        {% endfor %}
+    </p>
 
 {% if songs.has_previous %}
     <a href="?page=1">
