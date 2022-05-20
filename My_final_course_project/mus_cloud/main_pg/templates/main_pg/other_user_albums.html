@@ -3,42 +3,43 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>{{user.username}} songs</title>
+    <title>{{user.username}} albums</title>
 </head>
 <body>
     <h3>
         HELLO !!!
     </h3>
+
     <p>
-        {% for p in g %}
-            {{p.name_song}}<br>
+        {% for a in al %}
+            {{a.name_song}}<br>
 
             <audio controls>
-                <source src="{{p.song.url}}" type="audio/mpeg">
+                <source src="{{a.album.url}}" type="audio/mpeg">
             </audio>
 
         {% endfor %}
     </p>
 
     <p>
-        {% if g.has_previous %}
+        {% if al.has_previous %}
             <a href="?page=1">
             &laquo First
             </a><br>
 
-            <a href="?page={{ g.previous_page_number }}">
+            <a href="?page={{ al.previous_page_number }}">
             Previous
             </a>
         {% endif %}
 
-        Page {{ g.number }} of {{ g.paginator.num_pages }}
+        Page {{ al.number }} of {{ al.paginator.num_pages }}
 
-        {% if g.has_next %}
-            <a href="?page={{ g.next_page_number }}">
+        {% if al.has_next %}
+            <a href="?page={{ al.next_page_number }}">
                 next
             </a><br>
 
-            <a href="?page={{ g.paginator.num_pages }}">
+            <a href="?page={{ al.paginator.num_pages }}">
             >Last &raquo
             </a>
 

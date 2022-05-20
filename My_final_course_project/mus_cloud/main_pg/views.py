@@ -173,9 +173,27 @@ def other_user_songs(request, id_user: int):
     if request.method == "GET":
         user = User.objects.filter(id=id_user)
         songs = Song.objects.filter(user__id__in=user)
-        return render(request, "main_pg/other_user_songs.html", {"g": songs})
+
+        p_songs = Paginator(songs, 1)
+
+        page = request.GET.get("page")
+
+        song = p_songs.get_page(page)
+
+        return render(request, "main_pg/other_user_songs.html", {"g": song})
 
 
 @csrf_exempt
-def other_user_albums(request):
-    pass
+def other_user_albums(request, id_user: int):
+    if request.method == "GET":
+        user = User.objects.filter(id=id_user)
+
+        albums = Album.objects.filter(album_editor__id__in=user)
+
+        p_albums = Paginator(albums, 1)
+
+        page = request.GET.get("page")
+
+        album = p_albums.get_page(page)
+
+        return render(request, "main_pg/other_user_albums.html", {"al": album})
