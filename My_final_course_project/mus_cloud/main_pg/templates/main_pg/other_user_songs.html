@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h3>
+        HELLO !!!
+    </h3>
+    <p>
+        {% for p in g %}
+            {{p.name_song}}<br>
+
+            <audio controls>
+                <source src="{{p.song.url}}" type="audio/mpeg">
+            </audio>
+
+        {% endfor %}
+    </p>
+</body>
+</html>

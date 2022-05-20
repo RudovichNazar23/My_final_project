@@ -10,6 +10,12 @@
         {{user}}
     </h3>
     <p>
+        <a href="{% url 'songs' user.id %}">
+            Songs
+        </a>
+    </p>
+
+<!--    <p>
         {% for link in more_info %}
             <a href="{{link.first_link}}">
                 {{link.first_link}}
@@ -22,13 +28,15 @@
                 {{link.email}}<br>
 
         {% endfor %}
-    </p><br>
+    </p><br> -->
+
     <p>
         <a href="{% url 'search_user' %}">
             Back
         </a>
     </p>
-    <center>
+
+<!--    <center>
         <p>
             {% for user_post in user_posts %}
         <h3>{{user_post.name_song}}</h3><br>
@@ -46,7 +54,7 @@
             {% endfor %}
         </p>
 
-    </center>
+    </center> -->
 
 </body>
 </html>
