@@ -31,27 +31,39 @@ def add_more_information(request):
             return redirect("add_more_information")
 
 
-"""@csrf_exempt
-def your_profile(request):
-    if request.method == "GET":
-        user_post = {
-            "posts": Song.objects.filter(user=request.user),
-            "albums": Album.objects.filter(album_editor=request.user),
-            "more_info": User_profile.objects.filter(user=request.user)
-        }
-
-        print(user_post)
-        return render(request, "main_pg/your_profile.html", user_post)
-
-    elif request.method == "POST":
-        pass"""
-
-
 @csrf_exempt
 def your_profile(request):
     if request.method == "GET":
 
         return render(request, "main_pg/your_profile.html")
+
+
+@csrf_exempt
+def view_songs(request):
+    if request.method == "GET":
+        songs = Song.objects.filter(user=request.user)
+
+        p_songs = Paginator(songs, 1)
+
+        page = request.GET.get("page")
+
+        song = p_songs.get_page(page)
+
+        return render(request, "main_pg/song_page.html", {"songs": song})
+
+
+@csrf_exempt
+def view_albums(request):
+    if request.method == "GET":
+        albums = Album.objects.filter(album_editor=request.user)
+
+        p_albums = Paginator(albums, 1)
+
+        page = request.GET.get("page")
+
+        album = p_albums.get_page(page)
+
+        return render(request, "main_pg/album_page.html", {"albums": album})
 
 
 @csrf_exempt
@@ -156,30 +168,14 @@ def other_user_profile(request, id_user: int):
     print(context)
     return render(request, "main_pg/other_user_profile.html", context)
 
-
 @csrf_exempt
-def view_songs(request):
+def other_user_songs(request, id_user: int):
     if request.method == "GET":
-        songs = Song.objects.filter(user=request.user)
-
-        p_songs = Paginator(songs, 1)
-
-        page = request.GET.get("page")
-
-        song = p_songs.get_page(page)
-
-        return render(request, "main_pg/song_page.html", {"songs": song})
+        user = User.objects.filter(id=id_user)
+        songs = Song.objects.filter(user__id__in=user)
+        return render(request, "main_pg/other_user_songs.html", {"g": songs})
 
 
 @csrf_exempt
-def view_albums(request):
-    if request.method == "GET":
-        albums = Album.objects.filter(album_editor=request.user)
-
-        p_albums = Paginator(albums, 1)
-
-        page = request.GET.get("page")
-
-        album = p_albums.get_page(page)
-
-        return render(request, "main_pg/album_page.html", {"albums": album})
+def other_user_albums(request):
+    pass
