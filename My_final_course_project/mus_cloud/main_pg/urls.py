@@ -17,9 +17,7 @@ urlpatterns = [
     path("view_songs",  view_songs, name="view_songs"),
     path("view_albums", view_albums, name="view_albums"),
     path("user/<int:id_user>/songs", other_user_songs, name="songs"),
-    #path("other_user_albums", other_user_albums, name="other_user_albums")
-
-
+    path("user/<int:id_user>/albums", other_user_albums, name="albums")
 ]
 
 if settings.DEBUG:
