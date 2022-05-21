@@ -24,3 +24,8 @@ class SearchToDeleteSong(forms.Form):
 
 class DeleteSongForm(forms.Form):
     song = forms.CharField(max_length=100)
+
+class Add_Post(forms.ModelForm):
+    class Meta:
+        model = User_profile
+        fields = ["user_posts"]

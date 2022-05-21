@@ -53,65 +53,24 @@
         </center>
     </p>
 
-<p>
-    <a href="view_songs">
-        Songs
-    </a>
-</p>
-
-<p>
-    <a href="view_albums">
-        Albums
-    </a>
-</p>
-
-
     <p>
-        {% for album in albums %}
-        <h4>{{album.name_album}}</h4><br>
-        <audio controls>
-                <source src="{{album.album.url}}" type="audio/mpeg">
-            </audio>
-        {% endfor %}
+        <a href="view_songs">
+            Songs
+        </a>
     </p>
 
-{{songs}}<br>
-Has Previous: {{songs.has_previous}}<br>
-Has Next: {{songs.has_next}}<br>
-Current page: {{songs.number}}
-<hr><br>
     <p>
-        {% for song in songs %}
-            {{song.name_song}}<br>
-            <audio controls>
-                <source src="{{song.song.url}}" type="audio/mpeg">
-            </audio>
-
-        {% endfor %}
+        <a href="view_albums">
+            Albums
+        </a>
     </p>
 
-{% if songs.has_previous %}
-    <a href="?page=1">
-        &laquo First
-    </a>
+        <form>
+            {{form.as_p}}
+            <button type="submit" value="add">
+                Add
+            </button>
+        </form>
 
-    <a href="?page={{ songs.previous_page_number }}">
-        Previous
-    </a>
-{% endif %}
-
-Page {{ songs.number }} of {{ songs.paginator.num_pages }}
-
-{% if songs.has_next %}
-    <a href="?page={{ songs.next_page_number }}">
-        next
-    </a><br>
-
-    <a href="?page={{ songs.paginator.num_pages }}">
-        >Last &raquo
-    </a>
-
-
-{% endif %}
 </body>
 </html>
