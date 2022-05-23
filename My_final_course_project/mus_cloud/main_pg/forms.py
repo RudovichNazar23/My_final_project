@@ -1,5 +1,5 @@
 from django import forms
-from .models import Album, Song, User_profile
+from .models import Album, Song, User_profile, User_wall_post
 
 
 class SongForm(forms.Form):
@@ -24,3 +24,8 @@ class SearchToDeleteSong(forms.Form):
 
 class DeleteSongForm(forms.Form):
     song = forms.CharField(max_length=100)
+
+class Add_Text_Post(forms.ModelForm):
+    class Meta:
+        model = User_wall_post
+        fields = ["post"]

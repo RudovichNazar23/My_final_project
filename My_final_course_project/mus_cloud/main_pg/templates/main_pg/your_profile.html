@@ -79,7 +79,17 @@
         {% endfor %}
     {% endif %}
 
+    <p>
+        {% for post in posts %}
+            {{post.post}}<br>
+        {% endfor %}
+    </p>
 
+<p>
+    <a href="post_news">
+        Add post
+    </a>
+</p>
 
 
 </body>
