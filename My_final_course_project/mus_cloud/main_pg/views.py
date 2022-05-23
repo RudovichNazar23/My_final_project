@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from .forms import SongForm, AlbumForm, Add_more_info, Add_Post
+from .forms import SongForm, AlbumForm, Add_more_info
 from .models import Song, User, Album, User_profile
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -34,14 +34,8 @@ def add_more_information(request):
 @csrf_exempt
 def your_profile(request):
     if request.method == "GET":
-        return render(request, "main_pg/your_profile.html")
-
-
-@csrf_exempt
-def add_post(request):
-    if request.method == "GET":
-        form = Add_Post()
-        return render(request, "main_pg/your_profile.html", {"form": form})
+        info = User_profile.objects.filter(user=request.user)
+        return render(request, "main_pg/your_profile.html", {"info": info})
 
 
 @csrf_exempt
