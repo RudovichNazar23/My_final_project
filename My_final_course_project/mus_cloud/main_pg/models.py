@@ -25,3 +25,11 @@ class User_profile(models.Model):
 
     def __str__(self):
         return f"{self.user}"
+
+class User_wall_post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.TextField(null=True, default="")
+    date_of_post = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user}"

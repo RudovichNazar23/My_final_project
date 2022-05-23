@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from .forms import SongForm, AlbumForm, Add_more_info
-from .models import Song, User, Album, User_profile
+from .forms import SongForm, AlbumForm, Add_more_info, Add_Text_Post
+from .models import Song, User, Album, User_profile, User_wall_post
 from django.contrib import messages
 from django.core.paginator import Paginator
 
@@ -35,7 +35,28 @@ def add_more_information(request):
 def your_profile(request):
     if request.method == "GET":
         info = User_profile.objects.filter(user=request.user)
-        return render(request, "main_pg/your_profile.html", {"info": info})
+        posts = User_wall_post.objects.filter(user=request.user)
+        return render(request, "main_pg/your_profile.html", {"info": info,
+                                                             "posts": posts})
+
+
+@csrf_exempt
+def post_news(request):
+    if request.method == "GET":
+        form = Add_Text_Post()
+        return render(request, "main_pg/add_text_post.html", {"form": form})
+
+    elif request.method == "POST":
+        form = Add_Text_Post(request.POST)
+        if form.is_valid():
+            user_post = User_wall_post(user=request.user, **form.cleaned_data)
+            user_post.save()
+            messages.success(request, "saved successfully")
+            return redirect("post_news")
+
+        else:
+            messages.error(request, "try again, your form is not valid")
+            return redirect("post_news")
 
 
 @csrf_exempt

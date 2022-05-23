@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New post</title>
+</head>
+<body>
+<p>
+    <a href="your_profile">
+        Back to profile
+    </a>
+</p>
+    <center>
+        <form action="{% url 'post_news' %}" method="POST">
+            {{form.as_p}}
+            <button type="submit" value="post">
+                post
+            </button>
+        </form>
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    </center>
+</body>
+</html>

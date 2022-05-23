@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import main_page, your_profile, post_song, search_user, post_album, other_user_profile, add_more_information, delete_song, deleting_process, view_songs, view_albums
-from .views import other_user_songs, other_user_albums
+from .views import other_user_songs, other_user_albums, post_news
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -17,7 +17,8 @@ urlpatterns = [
     path("view_songs",  view_songs, name="view_songs"),
     path("view_albums", view_albums, name="view_albums"),
     path("user/<int:id_user>/songs", other_user_songs, name="songs"),
-    path("user/<int:id_user>/albums", other_user_albums, name="albums")
+    path("user/<int:id_user>/albums", other_user_albums, name="albums"),
+    path("post_news", post_news, name="post_news")
 ]
 
 if settings.DEBUG:
