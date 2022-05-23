@@ -21,7 +21,7 @@
         </a>
     </p>
 
-<!--    <p>
+    <p>
         {% for link in more_info %}
             <a href="{{link.first_link}}">
                 {{link.first_link}}
@@ -34,7 +34,7 @@
                 {{link.email}}<br>
 
         {% endfor %}
-    </p><br> -->
+    </p><br>
 
     <p>
         <a href="{% url 'search_user' %}">
@@ -42,25 +42,7 @@
         </a>
     </p>
 
-<!--    <center>
-        <p>
-            {% for user_post in user_posts %}
-        <h3>{{user_post.name_song}}</h3><br>
-                <audio controls><source src="{{user_post.song.url}}" type="audio/mpeg"><br>
-                </audio>
-            {% endfor %}
-        </p><br>
 
-        <p>
-            {% for album in user_album %}
-                <h3>{{album.name_album}}</h3><br>
-                <audio controls>
-                    <source src="{{album.album.url}}" type="audio/mpeg"><br>
-                </audio>
-            {% endfor %}
-        </p>
-
-    </center> -->
 
 </body>
 </html>

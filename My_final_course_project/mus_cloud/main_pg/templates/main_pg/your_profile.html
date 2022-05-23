@@ -36,21 +36,16 @@
           </a>
 
         </p>
-        <center>
-            {% for info in more_info %}
-            <a href="{{info.first_link}}"> {{info.first_link}} </a>  <br>
-                <a href="{{info.second_link}}"> {{info.second_link}}</a> <br>
-                {{info.email}}<br>
-            {% endfor %}
-        </center>
+
     {% for message in message %}
         {{message}}
     {% endfor %}
-        <center>
+    <!--    <center>
             <a href="add_more_information">
                 Add more information
             </a>
-        </center>
+        </center> -->
+
     </p>
 
     <p>
@@ -65,12 +60,27 @@
         </a>
     </p>
 
-        <form>
-            {{form.as_p}}
-            <button type="submit" value="add">
-                Add
-            </button>
-        </form>
+    {% if not info %}
+             <a href="add_more_information">
+                 Add more information
+             </a>
+    {% else %}
+        {% for link in info %}
+             <a href="{{link.first_link}}">
+                    {{link.first_link}}
+             </a><br>
+
+              <a href="{{link.second_link}}">
+                  {{link.second_link}}
+              </a><br>
+
+              {{link.email}}
+
+        {% endfor %}
+    {% endif %}
+
+
+
 
 </body>
 </html>

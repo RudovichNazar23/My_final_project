@@ -22,7 +22,6 @@ class User_profile(models.Model):
     first_link = models.URLField(max_length=500, null=True)
     second_link = models.URLField(max_length=500, null=True)
     email = models.EmailField(max_length=500, null=True)
-    user_posts = models.TextField(null=True, default="")
 
     def __str__(self):
         return f"{self.user}"
