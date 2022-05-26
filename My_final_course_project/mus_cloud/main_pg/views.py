@@ -36,8 +36,15 @@ def your_profile(request):
     if request.method == "GET":
         info = User_profile.objects.filter(user=request.user)
         posts = User_wall_post.objects.filter(user=request.user)
+
+        p_posts = Paginator(posts, 1)
+
+        page = request.GET.get("page")
+
+        post = p_posts.get_page(page)
+
         return render(request, "main_pg/your_profile.html", {"info": info,
-                                                             "posts": posts})
+                                                             "posts": post})
 
 
 @csrf_exempt
@@ -177,16 +184,19 @@ def search_user(request):
 @csrf_exempt
 def other_user_profile(request, id_user: int):
     user = get_object_or_404(User, id=id_user)
-    user_post = Song.objects.filter(user=user)
-    user_album = Album.objects.filter(album_editor=user)
-    user_links = User_profile.objects.filter(user=user)
+    user_posts = User_wall_post.objects.filter(user=user)
+
+    p_user_posts = Paginator(user_posts, 1)
+
+    page = request.GET.get("page")
+
+    posts_of_user = p_user_posts.get_page(page)
+
     context = {
         "user": user,
-        "user_posts": user_post,
-        "user_album": user_album,
-        "more_info": user_links
+        "posts_of_user": posts_of_user
     }
-    print(context)
+
     return render(request, "main_pg/other_user_profile.html", context)
 
 @csrf_exempt

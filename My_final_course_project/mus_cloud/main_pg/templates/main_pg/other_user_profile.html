@@ -41,8 +41,38 @@
             Back
         </a>
     </p>
+<hr>
+
+<center>
+    {% for post in posts_of_user %}
+        {{post.date_of_post}}<br>
+        {{post.post}}<br>
+    {% endfor %}
+</center>
 
 
+{% if posts_of_user.has_previous %}
+    <a href="?page=1">
+        &laquo First
+    </a><br>
 
+    <a href="?page={{ posts_of_user.previous_page_number }}">
+        Previous
+    </a>
+{% endif %}
+
+Page {{ posts_of_user.number }} of {{ posts_of_user.paginator.num_pages }}
+
+{% if posts_of_user.has_next %}
+    <a href="?page={{ posts_of_user.next_page_number }}">
+        next
+    </a><br>
+
+    <a href="?page={{ posts_of_user.paginator.num_pages }}">
+        >Last &raquo
+    </a>
+
+
+{% endif %}
 </body>
 </html>
