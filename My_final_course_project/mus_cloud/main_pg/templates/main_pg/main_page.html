@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
@@ -18,13 +19,6 @@
                     background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
                     color: #a00;}
 
-               p.info{
-                        height: 100px;
-                        background: white;
-                        outline: 2px solid #000;
-                        border: 350px solid #fff;
-                        border-radius: 10px;
-                         }
 
                .links{
                    margin: 0;
@@ -34,8 +28,6 @@
                }
 
         </style>
-
-
 
 <body>
     <div>
@@ -104,35 +96,21 @@
 
               </p>
         </div>
+        <p>
+            <a class="button" href="add_post">
+                Suggest news
+            </a>
+        </p>
+<hr>
 
+<center>
+    {% for post in p %}
+        {{post.user}}<br>
+        {{post.date_post}}<br>
+        {{post.post}}<br>
+    {% endfor %}
 
-            <p class="info">
-                <div class="links">
-                    Last album and events of red hot chili peppers !!!
-                    <a href="https://redhotchilipeppers.com/">
-                        Click here !!!
-                    </a><br>
-
-                    <h4>
-                        Best rock concerts:<br>
-                        <a href="https://www.youtube.com/watch?v=C0xcvOEXqrk">
-                            Metallica in Moscow -  1991
-                        </a><br>
-
-                        <a href="https://www.youtube.com/watch?v=GNBw2sQEGHU">
-                            Metallica in Seattle - 1989
-                        </a><br>
-
-                        <a href="https://www.youtube.com/watch?v=H96MEx73tDc&list=PLdwQoKcHbXaz8hewEItqKmanJxqI2iaqj">
-                            Nirvana Live and Loud - 1993
-                        </a>
-
-                    </h4>
-                </div>
-
-
-            </p>
-
+</center>
 
 
 </body>

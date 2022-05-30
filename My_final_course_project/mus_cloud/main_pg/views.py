@@ -1,15 +1,35 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from .forms import SongForm, AlbumForm, Add_more_info, Add_Text_Post
-from .models import Song, User, Album, User_profile, User_wall_post
+from .forms import SongForm, AlbumForm, Add_more_info, Add_Text_Post, Add_Post_at_Main_Page
+from .models import Song, User, Album, User_profile, User_wall_post, Main_page_Post
 from django.contrib import messages
 from django.core.paginator import Paginator
 
 
 @csrf_exempt
+def add_post_at_main_page(request):
+    if request.method == "GET":
+        form = Add_Post_at_Main_Page()
+        return render(request, "main_pg/add_post.html", {"form": form})
+
+    elif request.method == "POST":
+        form = Add_Post_at_Main_Page(request.POST)
+        if form.is_valid():
+            data = Main_page_Post(user=request.user, **form.cleaned_data)
+            data.save()
+            messages.success(request, "Ok")
+            return redirect("add_post")
+
+        else:
+            messages.error(request, "something is going wrong")
+            return redirect("add_post")
+
+
+@csrf_exempt
 def main_page(request):
     if request.method == "GET":
-        return render(request, "main_pg/main_page.html")
+        posts = Main_page_Post.objects.all()
+        return render(request, "main_pg/main_page.html", {"p": posts})
 
 
 @csrf_exempt

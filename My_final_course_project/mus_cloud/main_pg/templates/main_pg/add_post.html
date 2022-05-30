@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add post</title>
+</head>
+<body>
+    <p>
+        <a href="main_page">
+            Back
+        </a>
+    </p>
+    <center>
+
+    <form action="{% url 'add_post' %}" method="POST">
+      {{form.as_p}}
+        <button type="submit" value="Post">
+            Post
+        </button>
+    </form>
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    </center>
+</body>
+</html>
