@@ -1,5 +1,5 @@
 from django import forms
-from .models import Album, Song, User_profile, User_wall_post
+from .models import Album, Song, User_profile, User_wall_post, Main_page_Post
 
 
 class SongForm(forms.Form):
@@ -28,4 +28,9 @@ class DeleteSongForm(forms.Form):
 class Add_Text_Post(forms.ModelForm):
     class Meta:
         model = User_wall_post
+        fields = ["post"]
+
+class Add_Post_at_Main_Page(forms.ModelForm):
+    class Meta:
+        model = Main_page_Post
         fields = ["post"]

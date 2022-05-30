@@ -4,47 +4,82 @@
     <meta charset="UTF-8">
     <title>Song</title>
 </head>
+
+    <style>
+        .button {
+            border: 1px solid #333;
+            display: inline-block;
+            padding: 5px 15px;
+            text-decoration: none;
+            color: #000;
+        }
+
+
+        .button:hover {
+             box-shadow: 0 0 5px rgba(0,0,0,0.3);
+             background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
+             color: #a00;
+        }
+
+         button.links {
+            border: 1px solid #333;
+            display: inline-block;
+            padding: 5px 15px;
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+
+
 <body>
 
 <p>
-    <a href="your_profile">
-        Back to profile
-    </a>
+    <button class="links">
+        <a href="your_profile">
+            Back to profile
+        </a>
+    </button>
 </p>
 
-<p>
-    {% for song in songs %}
-        {{song.name_song}}<br>
+<center>
+    <p>
+        {% for song in songs %}
+            {{song.name_song}}<br>
 
-        <audio controls>
+            <audio controls>
 
             <source src="{{song.song.url}}" type="audio/mpeg">
 
-        </audio>
+            </audio>
+        {% endfor %}
+    </p>
+</center>
 
+        <p>
 
-    {% endfor %}
-</p>
+          <a href="delete_song" class="button">
+
+              Delete song
+
+          </a>
+
+        </p>
+
 
 {% if songs.has_previous %}
-    <a href="?page=1">
-        &laquo First
-    </a><br>
-
-    <a href="?page={{ songs.previous_page_number }}">
-        Previous
-    </a>
+    <a href="?page=1"> >&laquo First< </a>|
+    <a href="?page={{ songs.previous_page_number }}"> >Previous<</a>
 {% endif %}
 
 Page {{ songs.number }} of {{ songs.paginator.num_pages }}
 
 {% if songs.has_next %}
     <a href="?page={{ songs.next_page_number }}">
-        next
-    </a><br>
+        >Next<|
+    </a>|
 
     <a href="?page={{ songs.paginator.num_pages }}">
-        >Last &raquo
+        >Last &raquo<
     </a>
 
 

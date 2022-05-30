@@ -77,7 +77,7 @@ def user_log_in(request):
 
                 return redirect("main_page")
             else:
-                messages.error("your account disabled !") # CHECK IT !!!!!
+                messages.error("your account disabled !")
 
                 return redirect("login")
 
