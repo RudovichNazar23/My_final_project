@@ -6,30 +6,6 @@
     <title>Main page</title>
     <link rel="stylesheet" href="{% static 'main_pg/css/main.css' %}">
 </head>
-
-        <style>
-               .button {
-                border: 1px solid #333;
-                display: inline-block;
-                padding: 5px 15px;
-                text-decoration: none;
-                color: #000;}
-
-               .button:hover {
-                    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-                    background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
-                    color: #a00;}
-
-
-               .links{
-                   margin: 0;
-                   position: absolute;
-                   top: 50%;
-                   transform: translate(0, -50%)
-               }
-
-        </style>
-
 <body>
     <div>
             <h3>
@@ -106,35 +82,50 @@
 <hr>
 
 <center>
-    {% for post in view_posts %}
-        <a href="{%  url 'other_user_profile' post.user.id %}">
-            {{post.user}}
-        </a><br>
-        {{post.date_post}}<br>
-        {{post.post}}<br>
-    {% endfor %}
+    <div class="posts">
+        {% for post in view_posts %}
+            <a href="{%  url 'other_user_profile' post.user.id %}" class="user">
+                {{post.user}}
+            </a><br>
+            {{post.date_post}}<br>
+            {{post.post}}<br>
+            <hr>
+        {% endfor %}
+    </div>
+
 
 </center>
 
-{% if view_posts.has_previous %}
-    <a href="?page=1"> >&laquo First< </a>|
-    <a href="?page={{ view_posts.previous_page_number }}"> >Previous<</a>
-{% endif %}
+<center>
 
-Page {{ view_posts.number }} of {{ view_posts.paginator.num_pages }}
+    <div class="down">
 
-{% if view_posts.has_next %}
-    <a href="?page={{ view_posts.next_page_number }}">
-        >Next<|
-    </a>|
-
-    <a href="?page={{ view_posts.paginator.num_pages }}">
-        >Last &raquo<
-    </a>
+        {% if view_posts.has_previous %}
+            <h3>
+              <a href="?page={{ view_posts.previous_page_number }}"> Previous</a>
+                    Page {{ view_posts.number }} of {{ view_posts.paginator.num_pages }}
+                <a href="?page=1"> &laquo First </a>
+            </h3>
+        {% endif %}
 
 
-{% endif %}
 
+        {% if view_posts.has_next %}
+            <h3>
+                <a href="?page={{ view_posts.next_page_number }}">
+                    Next
+                </a>
 
+                    Page {{ view_posts.number }} of {{ view_posts.paginator.num_pages }}
+                <a href="?page={{ view_posts.paginator.num_pages }}">
+                    Last &raquo
+                </a>
+            </h3>
+
+        {% endif %}
+
+    </div>
+
+</center>
 </body>
 </html>
