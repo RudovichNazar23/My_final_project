@@ -1,0 +1,21 @@
+ p {
+   font-size: 120%;
+   clear: both;
+   text-align: right;
+ }
+
+ label{
+    float:left;
+ }
+
+ div.main {
+
+    float:left;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+
+ }
