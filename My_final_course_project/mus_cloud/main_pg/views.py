@@ -29,7 +29,14 @@ def add_post_at_main_page(request):
 def main_page(request):
     if request.method == "GET":
         posts = Main_page_Post.objects.all()
-        return render(request, "main_pg/main_page.html", {"p": posts})
+
+        pag_posts = Paginator(posts, 2)
+
+        page = request.GET.get("page")
+
+        view_posts = pag_posts.get_page(page)
+
+        return render(request, "main_pg/main_page.html", {"view_posts": view_posts})
 
 
 @csrf_exempt
@@ -182,7 +189,7 @@ def post_album(request):
             messages.error(request, "please, try again")
             return redirect("post_album")
 
-
+@csrf_exempt
 def search_user(request):
     if request.method == "POST":
 
