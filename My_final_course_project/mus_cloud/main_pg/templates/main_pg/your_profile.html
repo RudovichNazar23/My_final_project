@@ -4,111 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <title>Your profile</title>
+    <link rel="stylesheet" href="{% static 'main_pg/css/your_profile.css' %}">
 </head>
-    <style>
-          .button {
-            border: 1px solid #333;
-            display: inline-block;
-            padding: 5px 15px;
-            text-decoration: none;
-            color: #000;
-          }
-
-
-           .button:hover {
-                box-shadow: 0 0 5px rgba(0,0,0,0.3);
-                background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
-                color: #a00;
-           }
-    </style>
 <body>
     <p>
-        <a href="main_page">
+        <a href="main_page" class="button">
             Back
         </a>
-
     {% for message in message %}
         {{message}}
     {% endfor %}
-    <!--    <center>
-            <a href="add_more_information">
-                Add more information
-            </a>
-        </center> -->
-
     </p>
 
     <p>
-        <a href="view_songs">
+        <a href="view_songs" class="button">
             Songs
         </a>
     </p>
 
     <p>
-        <a href="view_albums">
+        <a href="view_albums" class="button">
             Albums
         </a>
     </p>
 
+   <p>
+        <a href="post_news" class="button">
+            Add post
+        </a>
+    </p>
+
     {% if not info %}
-             <a href="add_more_information">
+             <a href="add_more_information" class="button">
                  Add more information
              </a>
     {% else %}
         {% for link in info %}
-             <a href="{{link.first_link}}">
-                    {{link.first_link}}
-             </a><br>
+                 <section>
+                     <a href="{{link.first_link}}">
+                        {{link.first_link}}
+                     </a>
+                 </section><br>
 
-              <a href="{{link.second_link}}">
-                  {{link.second_link}}
-              </a><br>
+                  <section>
+                        <a href="{{link.second_link}}">
+                            {{link.second_link}}
+                        </a>
+                  </section><br>
 
-              {{link.email}}
-
+                   <section>{{link.email}}</section>
         {% endfor %}
-    {% endif %}
-
-<p>
-    <a href="post_news">
-        Add post
-    </a>
-</p>
+    {% endif %}<br>
 <hr>
-
-
     <center>
         <p>
             {% for post in posts %}
                 {{post.date_of_post}}<br>
                 {{post.post}}<br>
+                <hr>
             {% endfor %}
         </p>
     </center>
 
+<center>
+    <div class="down">
 
-{% if posts.has_previous %}
-    <a href="?page=1">
-        &laquo First
-    </a><br>
+        {% if posts.has_previous %}
+            <h3>
+                <a href="?page={{ posts.previous_page_number }}">
+                    Previous<|
+                </a>
 
-    <a href="?page={{ posts.previous_page_number }}">
-        Previous
-    </a>
-{% endif %}
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}
 
-Page {{ posts.number }} of {{ posts.paginator.num_pages }}
-
-{% if posts.has_next %}
-    <a href="?page={{ posts.next_page_number }}">
-        next
-    </a><br>
-
-    <a href="?page={{ posts.paginator.num_pages }}">
-        >Last &raquo
-    </a>
+                <a href="?page=1">
+                    <|&laquo First
+                </a>
+            </h3>
+        {% endif %}
 
 
-{% endif %}
+        {% if posts.has_next %}
+            <h3>
+
+                <a href="?page={{ posts.next_page_number }}">
+                    Next>|
+                </a>
+                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+
+                <a href="?page={{ posts.paginator.num_pages }}">
+                    >|Last &raquo
+                </a>
+            </h3>
+
+        {% endif %}
+    </div>
+</center>
+
 </body>
 </html>

@@ -22,7 +22,7 @@ def add_post_at_main_page(request):
 
         else:
             messages.error(request, "something is going wrong")
-            return redirect("add_post")
+            return redirect("add_post") # SOMETHING WRONG THERE !!!!!!
 
 
 @csrf_exempt
@@ -64,7 +64,7 @@ def your_profile(request):
         info = User_profile.objects.filter(user=request.user)
         posts = User_wall_post.objects.filter(user=request.user)
 
-        p_posts = Paginator(posts, 1)
+        p_posts = Paginator(posts, 3)
 
         page = request.GET.get("page")
 
