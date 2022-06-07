@@ -1,15 +1,18 @@
 .button {
+    position: relative;
+    padding-right: 10px;
     border: 1px solid #333;
     display: inline-block;
     padding: 5px 15px;
     text-decoration: none;
     color: #000;
-    }
+}
 
 .button:hover {
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
-    color: #a00;}
+    color: #a00;
+}
 
 
 .links{
@@ -19,11 +22,21 @@
    transform: translate(0, -50%)
 }
 
-div.down{
-    position: relative;
-    top: 420px;
-    }
-
 div.posts{
     line-height: 2.5;
-    }
+}
+
+pagination li p {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+

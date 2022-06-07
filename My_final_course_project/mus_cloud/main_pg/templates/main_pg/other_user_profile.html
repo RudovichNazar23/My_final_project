@@ -5,78 +5,110 @@
     <meta charset="UTF-8">
     <title> {{user.username}} Page</title>
     <link rel="stylesheet" href="{% static 'main_pg/css/other_user_profile.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
-    <h3>
-        {{user}}
-    </h3>
-    <p>
+    <center>
+       <h3 class="parag">
+            {{user}}
+        </h3>
+    </center>
+    <p class="parag">
         <a href="{% url 'search_user' %}" class="button">
             Back
         </a>
     </p>
 
-    <p>
+    <p class="parag">
         <a href="{% url 'songs' user.id %}" class="button">
             Songs
         </a>
     </p>
 
-    <p>
+    <p class="parag">
         <a href="{% url 'albums' user.id %}" class="button">
             Albums
         </a>
     </p>
 
-    <p>
-        {% for link in more_info %}
+
+    {% for link in us_links %}
+        <section>
             <a href="{{link.first_link}}">
                 {{link.first_link}}
-            </a><br>
+            </a>
+        </section><br>
 
+        <section>
             <a href="{{link.second_link}}">
                 {{link.second_link}}
-            </a><br>
+            </a>
+        </section><br>
 
-                {{link.email}}<br>
+            <section>
+                {{link.email}}
+            </section><br>
 
-        {% endfor %}
-    </p><br>
+    {% endfor %}
 <hr>
 
-<center>
-    {% for post in posts_of_user %}
-        {{post.date_of_post}}<br>
-        {{post.post}}<br>
-    {% endfor %}
-</center>
 
-    <div class="down">
-
-
-        {% if posts_of_user.has_previous %}
-            <a href="?page=1">
-                &laquo First
-            </a><br>
-
-            <a href="?page={{ posts_of_user.previous_page_number }}">
-                Previous
-            </a>
-        {% endif %}
-
-        Page {{ posts_of_user.number }} of {{ posts_of_user.paginator.num_pages }}
-
-        {% if posts_of_user.has_next %}
-            <a href="?page={{ posts_of_user.next_page_number }}">
-                next
-            </a><br>
-
-            <a href="?page={{ posts_of_user.paginator.num_pages }}">
-                >Last &raquo
-            </a>
-
-
-        {% endif %}
+    <div class="posts">
+        {% for post in posts_of_user %}
+            {{post.date_of_post}}<br>
+            {{post.post}}<br>
+            <hr>
+        {% endfor %}
     </div>
+
+
+    <div class="center">
+
+        <ul class="pagination">
+
+            {% if posts_of_user.has_previous %}
+
+                <li>
+                     <a  class="page-link" href="?page=1">
+                    First
+                    </a>
+                </li>
+
+                <li>
+                    <a class="page-link"  href="?page={{ posts_of_user.previous_page_number }}">
+                    Previous
+                    </a>
+                </li>
+
+            {% endif %}
+
+                <li><a class="page-link">Page {{ posts_of_user.number }}
+                    of
+                    {{ posts_of_user.paginator.num_pages }}</a></li>
+
+
+            {% if posts_of_user.has_next %}
+                <li>
+
+                    <a class="page-link"  href="?page={{ posts_of_user.next_page_number }}">
+                        Next
+                    </a>
+                </li>
+
+                <li>
+
+                    <a class="page-link"   href="?page={{ posts_of_user.paginator.num_pages }}">
+                        Last
+                    </a>
+
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
 </body>
 </html>

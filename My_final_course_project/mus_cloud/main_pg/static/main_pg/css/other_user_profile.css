@@ -11,7 +11,46 @@
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
     color: #a00;}
 
-div.down{
-    position: relative;
-    top: 420px;
+section {
+    height: 100%;
+    float: left;
+    margin: 1.5;
+    width: 100%;
+    text-align: center;
+}
+
+
+.pagination li {display: inline;}
+
+.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+
+}
+
+
+pagination li p {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+
+
+.parag {
+    padding-left: 10px;
+}
+
+
+.posts{
+    padding-left: 10px;
 }

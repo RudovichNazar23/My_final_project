@@ -5,17 +5,21 @@
     <meta charset="UTF-8">
     <title>Main page</title>
     <link rel="stylesheet" href="{% static 'main_pg/css/main.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <div>
-            <h3>
+    <center>
 
-                Hi , {{user.username}} !
+        <h3>
 
-            </h3>
-    </div>
+            Hi , {{user.username}} !
 
-    <div>
+        </h3>
+    </center>
+
+    <div class="right">
 
         <p>
 
@@ -26,10 +30,10 @@
           </a>
 
         </p>
-    </div>
 
 
-      <div>
+
+      <div class="right">
 
           <p>
 
@@ -42,15 +46,18 @@
           </p>
       </div>
 
-      <p>
-          <a href="search_user" class="button">
+      <div class="right">
 
-              Search users
+          <p>
+              <a href="search_user" class="button">
 
-          </a>
-      </p>
+                  Search users
 
-          <div>
+              </a>
+          </p>
+      </div>
+
+          <div class="right">
             <p>
                 <a href="post_album" class="button">
 
@@ -60,15 +67,18 @@
             </p>
         </div>
 
-        <p>
-            <a class="button" href="add_post">
-                Suggest news
-            </a>
-        </p>
+        <div class="right">
+
+            <p>
+                <a class="button" href="add_post">
+                    Suggest news
+                </a>
+            </p>
+        </div>
 
 
 
-        <div>
+        <div class="right">
               <p>
 
                 <a href="login" class="button">
@@ -79,6 +89,7 @@
 
               </p>
         </div>
+    </div>
 <hr>
 
 <center>
@@ -96,36 +107,47 @@
 
 </center>
 
-<center>
 
-    <div class="down">
+<ul class="pagination">
 
-        {% if view_posts.has_previous %}
-            <h3>
-              <a href="?page={{ view_posts.previous_page_number }}"> Previous</a>
-                    Page {{ view_posts.number }} of {{ view_posts.paginator.num_pages }}
-                <a href="?page=1"> &laquo First </a>
-            </h3>
-        {% endif %}
+    {% if view_posts.has_previous %}
+
+        <li>
+             <a  class="page-link" href="?page=1">
+            First
+            </a>
+        </li>
+
+        <li>
+            <a class="page-link"  href="?page={{ view_posts.previous_page_number }}">
+            Previous
+            </a>
+        </li>
+
+    {% endif %}
+
+        <li><a class="page-link">Page {{ view_posts.number }}
+            of
+            {{ view_posts.paginator.num_pages }}</a></li>
 
 
+    {% if view_posts.has_next %}
+        <li>
 
-        {% if view_posts.has_next %}
-            <h3>
-                <a href="?page={{ view_posts.next_page_number }}">
-                    Next
-                </a>
+            <a class="page-link"  href="?page={{ view_posts.next_page_number }}">
+                Next
+            </a>
+        </li>
 
-                    Page {{ view_posts.number }} of {{ view_posts.paginator.num_pages }}
-                <a href="?page={{ view_posts.paginator.num_pages }}">
-                    Last &raquo
-                </a>
-            </h3>
+        <li>
 
-        {% endif %}
+            <a class="page-link"   href="?page={{ view_posts.paginator.num_pages }}">
+                Last
+            </a>
 
-    </div>
+        </li>
+    {% endif %}
+</ul>
 
-</center>
 </body>
 </html>
