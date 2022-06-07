@@ -212,8 +212,9 @@ def search_user(request):
 def other_user_profile(request, id_user: int):
     user = get_object_or_404(User, id=id_user)
     user_posts = User_wall_post.objects.filter(user=user)
+    user_links = User_profile.objects.filter(user=user)
 
-    p_user_posts = Paginator(user_posts, 1)
+    p_user_posts = Paginator(user_posts, 2)
 
     page = request.GET.get("page")
 
@@ -221,7 +222,8 @@ def other_user_profile(request, id_user: int):
 
     context = {
         "user": user,
-        "posts_of_user": posts_of_user
+        "posts_of_user": posts_of_user,
+        "us_links": user_links
     }
 
     return render(request, "main_pg/other_user_profile.html", context)
