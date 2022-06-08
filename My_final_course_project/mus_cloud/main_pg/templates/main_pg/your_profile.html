@@ -5,39 +5,45 @@
     <meta charset="UTF-8">
     <title>Your profile</title>
     <link rel="stylesheet" href="{% static 'main_pg/css/your_profile.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
-    <p>
+    <p class="gpad">
         <a href="main_page" class="button">
             Back
         </a>
+    </p>
+
     {% for message in message %}
         {{message}}
     {% endfor %}
-    </p>
 
-    <p>
+    <p class="gpad">
         <a href="view_songs" class="button">
             Songs
         </a>
     </p>
 
-    <p>
+    <p class="gpad">
         <a href="view_albums" class="button">
             Albums
         </a>
     </p>
 
-   <p>
+    <p class="gpad">
         <a href="post_news" class="button">
             Add post
         </a>
     </p>
 
     {% if not info %}
-             <a href="add_more_information" class="button">
-                 Add more information
-             </a>
+            <p class="gpad">
+
+                 <a href="add_more_information" class="button">
+                     Add more information
+                 </a>
+            </p>
     {% else %}
         {% for link in info %}
                  <section>
@@ -56,50 +62,67 @@
         {% endfor %}
     {% endif %}<br>
 <hr>
-    <center>
-        <p>
-            {% for post in posts %}
-                {{post.date_of_post}}<br>
-                {{post.post}}<br>
-                <hr>
-            {% endfor %}
-        </p>
-    </center>
+    <div class="posts">
+        {% for post in posts %}
+            {{post.date_of_post}}<br>
+            {{post.post}}<br>
+            <hr>
+        {% endfor %}
+    </div>
 
-<center>
-    <div class="down">
+
+    <ul class="pagination">
 
         {% if posts.has_previous %}
-            <h3>
-                <a href="?page={{ posts.previous_page_number }}">
-                    Previous<|
-                </a>
 
-                Page {{ posts.number }} of {{ posts.paginator.num_pages }}
-
-                <a href="?page=1">
-                    <|&laquo First
+            <li>
+                 <a  class="page-link" href="?page=1">
+                First
                 </a>
-            </h3>
+            </li>
+
+            <li>
+                <a class="page-link"  href="?page={{ posts.previous_page_number }}">
+                Previous
+                </a>
+            </li>
+
         {% endif %}
+
+            <li><a class="page-link">Page {{ posts.number }}
+                of
+                {{ posts.paginator.num_pages }}</a></li>
 
 
         {% if posts.has_next %}
-            <h3>
+            <li>
 
-                <a href="?page={{ posts.next_page_number }}">
-                    Next>|
+                <a class="page-link"  href="?page={{ posts.next_page_number }}">
+                    Next
                 </a>
-                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+            </li>
 
-                <a href="?page={{ posts.paginator.num_pages }}">
-                    >|Last &raquo
+            <li>
+
+                <a class="page-link"   href="?page={{ posts.paginator.num_pages }}">
+                    Last
                 </a>
-            </h3>
 
+            </li>
         {% endif %}
-    </div>
-</center>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
