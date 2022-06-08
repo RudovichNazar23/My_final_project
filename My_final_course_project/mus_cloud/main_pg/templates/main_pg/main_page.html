@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <center>
+    <center class="name">
 
         <h3>
 
@@ -19,80 +19,71 @@
         </h3>
     </center>
 
-    <div class="right">
 
-        <p>
+    <p class="right">
 
-          <a href="your_profile" class="button">
+      <a href="your_profile" class="button">
 
-              Your profile
+          Your profile
+
+      </a>
+
+    </p>
+
+
+
+
+
+    <p class="right">
+
+      <a href="post_song" class="button">
+
+          Post song
+
+      </a>
+
+    </p>
+
+
+
+      <p class="right">
+          <a href="search_user" class="button">
+
+              Search users
 
           </a>
-
-        </p>
-
-
-
-      <div class="right">
-
-          <p>
-
-              <a href="post_song" class="button">
-
-                  Post song
-
-              </a>
-
-          </p>
-      </div>
-
-      <div class="right">
-
-          <p>
-              <a href="search_user" class="button">
-
-                  Search users
-
-              </a>
-          </p>
-      </div>
-
-          <div class="right">
-            <p>
-                <a href="post_album" class="button">
-
-                    Post album
-
-                </a>
-            </p>
-        </div>
-
-        <div class="right">
-
-            <p>
-                <a class="button" href="add_post">
-                    Suggest news
-                </a>
-            </p>
-        </div>
+      </p>
 
 
 
-        <div class="right">
-              <p>
+    <p class="right">
+        <a href="post_album" class="button">
 
-                <a href="login" class="button">
+            Post album
 
-                    Logout
+        </a>
+    </p>
 
-                </a>
 
-              </p>
-        </div>
-    </div>
+    <p class="right">
+        <a class="button" href="add_post">
+            Suggest news
+        </a>
+    </p>
+
+
+
+     <p class="right">
+
+            <a href="login" class="button">
+
+                Logout
+
+            </a>
+     </p>
 <hr>
 
-<center>
+
     <div class="posts">
         {% for post in view_posts %}
             <a href="{%  url 'other_user_profile' post.user.id %}" class="user">
@@ -103,9 +94,6 @@
             <hr>
         {% endfor %}
     </div>
-
-
-</center>
 
 
 <ul class="pagination">

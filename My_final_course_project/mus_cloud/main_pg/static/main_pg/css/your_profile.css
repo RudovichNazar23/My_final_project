@@ -4,6 +4,7 @@
     padding: 5px 15px;
     text-decoration: none;
     color: #000;
+
 }
 
 
@@ -13,17 +14,33 @@
     color: #a00;
 }
 
-div.down{
-    position: relative;
-    top: 570px;
-}
-
-
 
 section {
     height: 100%;
-    float: left;
-    margin: 0 1.5;
     width: 100%;
     text-align: center;
+}
+
+pagination li p {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+
+.gpad{
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+
+.posts{
+    margin-left: 10px;
 }

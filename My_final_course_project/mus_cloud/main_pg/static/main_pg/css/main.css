@@ -40,3 +40,15 @@ ul.pagination li a.active {
 
 ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 
+.right{
+    margin-left: 10px;
+}
+
+.posts {
+    margin-left: 15px;
+}
+
+.name {
+
+    margin-top: 20px;
+}
