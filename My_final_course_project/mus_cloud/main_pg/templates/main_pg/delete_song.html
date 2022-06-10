@@ -4,16 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete song</title>
+    <link rel="stylesheet" href="{% static 'main_pg/css/delete_song.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <form action="{% url 'delete_song' %}" method="POST">
-        <input type="text"   name="name_song" placeholder="Search by name song"><br>
-        <input type="submit" value="search"><br>
-    </form>
-    {% for result in results %}
+    <p class="pd-td">
+        <a href="view_songs" class="button">
+            Back
+        </a>
+    </p>
+    <div class="centr">
+
+        <div class="input-group">
+            <form action="{% url 'delete_song' %}" method="POST">
+                <input type="search"   name="name_song"  placeholder="Search by name song" class="form-control rounded"  aria-describedby="search-addon">
+                <button type="submit" class="btn btn-outline-primary"> search</button>
+            </form>
+        </div>
+
+    </div>
+
+<hr>
+
+        {% for result in results %}
     <center>
-        <a href="{% url 'deleting_song' song.id %}">
-            <h3>{{result.name_song}}<br></h3>
+        <a href="{% url 'deleting_song' result.id %}">
+            {{result.name_song}}<br>
         </a>
     </center>
 

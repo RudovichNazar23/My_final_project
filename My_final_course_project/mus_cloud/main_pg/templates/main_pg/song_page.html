@@ -1,45 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Song</title>
+    <link rel="stylesheet" href="{% static 'main_pg/css/song_page.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </head>
-
-    <style>
-        .button {
-            border: 1px solid #333;
-            display: inline-block;
-            padding: 5px 15px;
-            text-decoration: none;
-            color: #000;
-        }
-
-
-        .button:hover {
-             box-shadow: 0 0 5px rgba(0,0,0,0.3);
-             background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
-             color: #a00;
-        }
-
-         button.links {
-            border: 1px solid #333;
-            display: inline-block;
-            padding: 5px 15px;
-            text-decoration: none;
-            color: #000;
-        }
-    </style>
-
 
 <body>
 
-<p>
-    <button class="links">
-        <a href="your_profile">
+<p class="topp">
+        <a href="your_profile" class="button">
             Back to profile
         </a>
-    </button>
 </p>
+
+
+<p class="padd">
+
+  <a href="delete_song" class="button">
+
+      Delete song
+
+  </a>
+
+</p>
+
+
 
 <center>
     <p>
@@ -55,35 +46,48 @@
     </p>
 </center>
 
-        <p>
+<hr>
 
-          <a href="delete_song" class="button">
+<ul class="pagination">
 
-              Delete song
+    {% if songs.has_previous %}
 
-          </a>
+        <li>
+             <a  class="page-link" href="?page=1">
+            First
+            </a>
+        </li>
 
-        </p>
+        <li>
+            <a class="page-link"  href="?page={{ songs.previous_page_number }}">
+            Previous
+            </a>
+        </li>
 
+    {% endif %}
 
-{% if songs.has_previous %}
-    <a href="?page=1"> >&laquo First< </a>|
-    <a href="?page={{ songs.previous_page_number }}"> >Previous<</a>
-{% endif %}
-
-Page {{ songs.number }} of {{ songs.paginator.num_pages }}
-
-{% if songs.has_next %}
-    <a href="?page={{ songs.next_page_number }}">
-        >Next<|
-    </a>|
-
-    <a href="?page={{ songs.paginator.num_pages }}">
-        >Last &raquo<
-    </a>
+        <li><a class="page-link">Page {{ songs.number }}
+            of
+            {{ songs.paginator.num_pages }}</a></li>
 
 
-{% endif %}
+    {% if songs.has_next %}
+        <li>
+
+            <a class="page-link"  href="?page={{ songs.next_page_number }}">
+                Next
+            </a>
+        </li>
+
+        <li>
+
+            <a class="page-link"   href="?page={{ songs.paginator.num_pages }}">
+                Last
+            </a>
+
+        </li>
+    {% endif %}
+</ul>
 
 </body>
 </html>

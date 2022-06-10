@@ -24,11 +24,12 @@
                 {% csrf_token %}
                 <div class="input-group">
                     <input type="search"   name="username"  placeholder="Search by username" class="form-control rounded"  aria-describedby="search-addon">
-                    <button type="submit" class="btn btn-outline-primary"> search</button>
+                    <button type="submit" class="btn btn-outline-primary"> Search</button>
                 </div>
             </form>
     </div>
-    <hr>
+
+<hr>
 
         <div class="result">
 
@@ -38,7 +39,6 @@
                     </a>
             {% endfor %}
          </div>
-
 
     <center>
         {% for user in users %}<br>
