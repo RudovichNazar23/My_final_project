@@ -1,31 +1,35 @@
 .button {
+    position: relative;
+    padding-right: 10px;
     border: 1px solid #333;
     display: inline-block;
     padding: 5px 15px;
     text-decoration: none;
     color: #000;
-    }
+}
 
 .button:hover {
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
-    color: #a00;}
+    color: #a00;
+}
 
-.rig{
+
+.pd-td {
+    margin-top: 10px;
     padding-left: 10px;
-    position: relative;
-    top: 10px;
+
 }
 
-
-
-
-.centr{
-    margin: 0 auto;
-    width: 260px;
-}
-
-.result{
+.centr {
     margin: 0 auto;
     width: 250px;
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group button {
+    margin-top: 10px;
 }
