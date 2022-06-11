@@ -4,10 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>{{user.username}} albums</title>
+    <link rel="stylesheet" href="{% static 'main_pg/css/other_user_albums.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
-    <p>
+    <p class="right">
+        <a href="{%  url 'search_user' %}" class="button">
+            Back
+        </a>
+    </p>
+
+
+    <center>
+
         {% for a in al %}
             {{a.name_song}}<br>
 
@@ -16,32 +29,54 @@
             </audio>
 
         {% endfor %}
-    </p>
 
-    <p>
-        {% if al.has_previous %}
-            <a href="?page=1">
-            &laquo First
-            </a><br>
+    </center>
 
-            <a href="?page={{ al.previous_page_number }}">
+<hr>
+
+
+<ul class="pagination">
+
+    {% if al.has_previous %}
+
+        <li>
+             <a  class="page-link" href="?page=1">
+            First
+            </a>
+        </li>
+
+        <li>
+            <a class="page-link"  href="?page={{ al.previous_page_number }}">
             Previous
             </a>
-        {% endif %}
+        </li>
 
-        Page {{ al.number }} of {{ al.paginator.num_pages }}
+    {% endif %}
 
-        {% if al.has_next %}
-            <a href="?page={{ al.next_page_number }}">
-                next
-            </a><br>
+        <li><a class="page-link">Page {{ al.number }}
+            of
+            {{ al.paginator.num_pages }}</a></li>
 
-            <a href="?page={{ al.paginator.num_pages }}">
-            >Last &raquo
+
+    {% if al.has_next %}
+        <li>
+
+            <a class="page-link"  href="?page={{ al.next_page_number }}">
+                Next
+            </a>
+        </li>
+
+        <li>
+
+            <a class="page-link"   href="?page={{ al.paginator.num_pages }}">
+                Last
             </a>
 
-        {% endif %}
-    </p>
+        </li>
+    {% endif %}
+</ul>
+
+
 
 </body>
 </html>
