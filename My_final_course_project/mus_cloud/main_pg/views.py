@@ -21,9 +21,14 @@ def add_post_at_main_page(request):
             return redirect("add_post")
 
         else:
-            messages.error(request, "something is going wrong")
-            return redirect("add_post") # SOMETHING WRONG THERE !!!!!!
+            messages.error(request, "Something is going wrong")
+            return redirect("add_post")
 
+@csrf_exempt
+def delete_post_at_main_page(request, post_id: int):
+    post = Main_page_Post.objects.get(id=post_id)
+    post.delete()
+    return redirect("main_page")
 
 @csrf_exempt
 def main_page(request):
@@ -50,11 +55,11 @@ def add_more_information(request):
         if info_form.is_valid():
             info = User_profile(user=request.user, **info_form.cleaned_data)
             info.save()
-            messages.success(request, "added !")
+            messages.success(request, "Added")
             return redirect("add_more_information")
 
         else:
-            messages.error(request, "not valid")
+            messages.error(request, "Not valid")
             return redirect("add_more_information")
 
 
@@ -85,11 +90,11 @@ def post_news(request):
         if form.is_valid():
             user_post = User_wall_post(user=request.user, **form.cleaned_data)
             user_post.save()
-            messages.success(request, "saved successfully")
+            messages.success(request, "Saved successfully")
             return redirect("post_news")
 
         else:
-            messages.error(request, "try again, your form is not valid")
+            messages.error(request, "Try again, your form is not valid")
             return redirect("post_news")
 
 
@@ -136,7 +141,7 @@ def post_song(request):
             return redirect("post_song")
 
         else:
-            messages.error(request, "please, try again")
+            messages.error(request, "Please, try again")
             return redirect("post_song")
 
 
