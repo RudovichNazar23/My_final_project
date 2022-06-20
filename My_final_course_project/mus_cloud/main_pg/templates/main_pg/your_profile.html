@@ -66,6 +66,15 @@
         {% for post in posts %}
             {{post.date_of_post}}<br>
             {{post.post}}<br>
+            <center>
+                 <a href="{% url 'delete_news' post.id %}" class="button">
+                    Delete
+                </a><br>
+
+                <a href="{% url 'update_post' post.id %}" class="button">
+                    Edit
+                </a>
+            </center>
             <hr>
         {% endfor %}
     </div>

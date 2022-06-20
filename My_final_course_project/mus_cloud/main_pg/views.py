@@ -30,6 +30,7 @@ def delete_post_at_main_page(request, post_id: int):
     post.delete()
     return redirect("main_page")
 
+
 @csrf_exempt
 def main_page(request):
     if request.method == "GET":
@@ -62,23 +63,6 @@ def add_more_information(request):
             messages.error(request, "Not valid")
             return redirect("add_more_information")
 
-
-@csrf_exempt
-def your_profile(request):
-    if request.method == "GET":
-        info = User_profile.objects.filter(user=request.user)
-        posts = User_wall_post.objects.filter(user=request.user)
-
-        p_posts = Paginator(posts, 3)
-
-        page = request.GET.get("page")
-
-        post = p_posts.get_page(page)
-
-        return render(request, "main_pg/your_profile.html", {"info": info,
-                                                             "posts": post})
-
-
 @csrf_exempt
 def post_news(request):
     if request.method == "GET":
@@ -97,6 +81,36 @@ def post_news(request):
             messages.error(request, "Try again, your form is not valid")
             return redirect("post_news")
 
+@csrf_exempt
+def your_profile(request):
+    if request.method == "GET":
+        info = User_profile.objects.filter(user=request.user)
+        posts = User_wall_post.objects.filter(user=request.user)
+
+        p_posts = Paginator(posts, 3)
+
+        page = request.GET.get("page")
+
+        post = p_posts.get_page(page)
+
+        return render(request, "main_pg/your_profile.html", {"info": info,
+                                                             "posts": post})
+
+@csrf_exempt
+def update_post(request, news_id):
+    post = User_wall_post.objects.get(id=news_id)
+    form = Add_Text_Post(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect("your_profile")
+    return render(request, "main_pg/edit_text_post.html", {"news": post, "form": form})
+
+
+@csrf_exempt
+def delete_news(request, news_id: int):
+    news = User_wall_post.objects.filter(id=news_id)
+    news.delete()
+    return redirect("your_profile")
 
 @csrf_exempt
 def view_songs(request):
