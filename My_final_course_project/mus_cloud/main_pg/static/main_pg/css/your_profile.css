@@ -43,4 +43,5 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 
 .posts{
     margin-left: 10px;
+    line-height: 2.0;
 }
