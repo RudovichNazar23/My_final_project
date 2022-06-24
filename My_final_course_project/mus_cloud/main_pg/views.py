@@ -25,6 +25,16 @@ def add_post_at_main_page(request):
             return redirect("add_post")
 
 @csrf_exempt
+def edit_post_at_the_main_page(request, post_id):
+    post = Main_page_Post.objects.get(id=post_id)
+    form = Add_Post_at_Main_Page(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect("main_page")
+    return render(request, "main_pg/edit_main_post.html", {"post": post, "form": form})
+
+
+@csrf_exempt
 def delete_post_at_main_page(request, post_id: int):
     post = Main_page_Post.objects.get(id=post_id)
     post.delete()

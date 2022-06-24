@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import main_page, your_profile, post_song, search_user, post_album, other_user_profile, add_more_information, delete_song, deleting_process, view_songs, view_albums
-from .views import other_user_songs, other_user_albums, post_news, add_post_at_main_page, delete_post_at_main_page, delete_news, update_post
+from .views import other_user_songs, other_user_albums, post_news, add_post_at_main_page, delete_post_at_main_page, delete_news, update_post, edit_post_at_the_main_page
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -23,7 +23,7 @@ urlpatterns = [
     path("delete_news/<int:news_id>", delete_news, name="delete_news"),
     path("update_post/<int:news_id>", update_post, name="update_post"),
     path("add_post", add_post_at_main_page, name="add_post"),
-
+    path("edit_post/<int:post_id>", edit_post_at_the_main_page, name="edit_post"),
     path("delete_post/<int:post_id>", delete_post_at_main_page, name="delete_post"),
 
 ]
