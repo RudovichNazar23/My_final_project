@@ -91,6 +91,19 @@
             </a><br>
             {{post.date_post}}<br>
             {{post.post}}<br>
+
+            {% if post.user == request.user %}
+                <center>
+                    <a href="{% url 'delete_post' post.id %}" class="button">
+                        Delete
+                    </a>
+                </center><br>
+                <center>
+                    <a href="{% url 'edit_post' post.id %}" class="button">
+                        Edit
+                    </a>
+                </center>
+            {% endif %}
             <hr>
         {% endfor %}
     </div>
