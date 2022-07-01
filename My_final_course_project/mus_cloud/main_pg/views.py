@@ -175,6 +175,7 @@ def delete_song(request):
 
         name_song = request.POST["name_song"]
         result = Song.objects.filter(
+            user=request.user,
             name_song__contains=name_song
         )
         return render(request, "main_pg/delete_song.html", {"results": result})
